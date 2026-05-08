@@ -1,0 +1,38 @@
+/* wrapper */
+.moving-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  padding: 10px 0;
+}
+
+/* track */
+.moving-track {
+  display: flex;
+  gap: 25px;
+  width: max-content;
+  animation: scrollLeft 12s linear infinite;
+}
+
+/* card styling */
+.moving-card {
+  min-width: 280px;
+  border-radius: 14px;
+  background: #ffffff;
+  transition: transform 0.3s ease;
+}
+
+/* hover effect */
+.moving-card:hover {
+  transform: translateY(-5px);
+}
+
+/* smooth infinite scroll */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
