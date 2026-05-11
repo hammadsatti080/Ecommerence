@@ -251,7 +251,7 @@ export default function Adminrating() {
     const [filteredReviews, setFilteredReviews] = useState([]);
     const [search, setSearch] = useState("");
     const [toast, setToast] = useState("");
-
+/*
     useEffect(() => {
         fetch("https://ecommerence-backend-ten.vercel.app/api/contact")
             .then((res) => res.json())
@@ -261,7 +261,24 @@ export default function Adminrating() {
             })
             .catch((err) => console.log(err));
     }, []);
+*/
+useEffect(() => {
+    fetch("https://ecommerence-backend-ten.vercel.app/api/contact")
+        .then((res) => res.json())
+        .then((data) => {
 
+            console.log(data);
+
+            if (Array.isArray(data)) {
+                setReviews(data);
+                setFilteredReviews(data);
+            } else {
+                setReviews([]);
+                setFilteredReviews([]);
+            }
+        })
+        .catch((err) => console.log(err));
+}, []);
 
     const handleFilter = (e) => {
         const value = e.target.value;
