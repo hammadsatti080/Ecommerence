@@ -35,33 +35,33 @@ export default function UserOrders() {
 
   return (
     <div style={{ maxWidth: "900px", margin: "auto", padding: "20px" }}>
- <h2
-  style={{
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexWrap: "wrap",  // allow wrapping on small screens
-    marginBottom: "20px",
-  }}
->
-  <span style={{ fontSize: "1.5rem", fontWeight: "bold" }}>Your Orders</span>
-  <button
-    onClick={() => window.history.back()}
-    style={{
-      padding: "8px 16px",
-      color: "#fff",
-      backgroundColor: "#007bff",
-      border: "none",
-      fontSize:"15px",
-      borderRadius: "4px",
-      cursor: "pointer",
-      marginTop: "8px",       // spacing if it wraps on mobile
-      flexShrink: 0,          // prevent shrinking
-    }}
-  >
-    Go Back
-  </button>
-</h2>
+      <h2
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",  // allow wrapping on small screens
+          marginBottom: "20px",
+        }}
+      >
+        <span style={{ fontSize: "1.5rem", fontWeight: "bold" }}>Your Orders</span>
+        <button
+          onClick={() => window.history.back()}
+          style={{
+            padding: "8px 16px",
+            color: "#fff",
+            backgroundColor: "#007bff",
+            border: "none",
+            fontSize: "15px",
+            borderRadius: "4px",
+            cursor: "pointer",
+            marginTop: "8px",       // spacing if it wraps on mobile
+            flexShrink: 0,          // prevent shrinking
+          }}
+        >
+          Go Back
+        </button>
+      </h2>
 
       {loading && <p>Loading orders...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
@@ -123,7 +123,7 @@ export default function UserOrders() {
           </div>
         ))}
       </div>
-     
+
 
       {/* CSS */}
       <style>

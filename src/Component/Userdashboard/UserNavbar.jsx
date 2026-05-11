@@ -34,8 +34,8 @@ export default function UserNavbar({ loggedInUser }) {
     </a>
   </li>
   <li className="nav-item">
-    <a className="nav-link fw-bold d-flex align-items-center" href="/orders">
-      <i className="bi bi-bag-fill me-1"></i> Orders
+    <a className="nav-link fw-bold d-flex align-items-center" href="/Userrating">
+      <i className="bi bi-bag-fill me-1"></i> User Rating
     </a>
   </li>
   <li className="nav-item">

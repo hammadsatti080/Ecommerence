@@ -14,6 +14,7 @@ import UserLogin from './Component/Auth/UserLogin';
 import AdminOrders from './Component/Dashboard/Adminorderhandle/AdminOrders';
 import UserOrders from './Component/Dashboard/Adminorderhandle/UserOrders';
 import UserNavbar from './Component/Userdashboard/UserNavbar';
+import Userrating from './Component/Dashboard/Ratingcontrol/Userrating';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route path="/adminorder" element={<AdminOrders />} />
           <Route path="/userorders" element={<UserOrders />} />
           <Route path="/usernavbar" element={<UserNavbar />} />
+          <Route path="/Userrating" element={<Userrating />} />
         </Routes>
         <Footer />
       </div>

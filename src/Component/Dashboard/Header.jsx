@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Categorys from "../Catagory/Catagories";
 import Product from "./Product/Product";
 import AdminOrders from "./Adminorderhandle/AdminOrders";
-import UserOrders from "./Adminorderhandle/UserOrders";
+import Adminrating from "./Ratingcontrol/Adminrating";
+
 
 export default function App() {
   const [page, setPage] = useState("product");
@@ -49,20 +50,20 @@ export default function App() {
         >
           💰 Sale
         </button>
-
-        {/* LOGIN */}
+        {/* Reviews */}
         <button
           style={{
             ...btn,
-            ...(page === "login" ? activeBtn : {})
+            ...(page === "review" ? activeBtn : {})
           }}
           onClick={() => {
-            setPage("login");
+            setPage("review");
             setSelectedCategory("");
           }}
         >
-          🔐 Login
+          🔐 Reviews
         </button>
+
 
         {/* CATEGORY */}
         <div style={{ marginTop: "25px" }}>
@@ -104,7 +105,8 @@ export default function App() {
           <>
             {page === "product" && <Product />}
             {page === "sale" && <AdminOrders />}
-            {page === "login" && <UserOrders />}
+            {page === "review" && <Adminrating />}
+
           </>
         )}
 

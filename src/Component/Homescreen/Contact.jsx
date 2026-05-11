@@ -5,6 +5,7 @@ export default function Contact() {
         name: "",
         email: "",
         message: "",
+        rating: 0,
     });
 
     const [errors, setErrors] = useState({});
@@ -27,6 +28,9 @@ export default function Contact() {
         if (!form.message.trim()) {
             newErrors.message = "Message is required";
         }
+        if (form.rating === 0) {
+            newErrors.rating = "Please select rating";
+        }
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -34,6 +38,10 @@ export default function Contact() {
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
+    };
+
+    const handleRating = (value) => {
+        setForm({ ...form, rating: value });
     };
 
     const handleSubmit = async () => {
@@ -55,7 +63,7 @@ export default function Contact() {
 
             if (res.ok) {
                 setStatus("✅ Message sent successfully!");
-                setForm({ name: "", email: "", message: "" });
+                setForm({ name: "", email: "", message: "", rating: 0, });
             } else {
                 setStatus("❌ " + data.error);
             }
@@ -88,6 +96,32 @@ export default function Contact() {
                 onChange={handleChange}
             />
             {errors.email && <p style={styles.error}>{errors.email}</p>}
+
+            {/* ⭐ Star Rating */}
+            <div style={styles.ratingContainer}>
+                <p>Select Rating:</p>
+
+                {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                        key={star}
+                        type="button"
+                        onClick={() => handleRating(star)}
+                        style={{
+                            ...styles.starBtn,
+                            color:
+                                form.rating >= star ? "#facc15" : "#cbd5e1",
+                        }}
+                    >
+                        ★
+                    </button>
+                ))}
+            </div>
+
+            {errors.rating && (
+                <p style={styles.error}>{errors.rating}</p>
+            )}
+
+
 
             <textarea
                 style={styles.textarea}
@@ -137,6 +171,17 @@ const styles = {
         cursor: "pointer",
         fontWeight: "600",
     },
+    starBtn: {
+        background: "transparent",
+        border: "none",
+        fontSize: "30px",
+        cursor: "pointer",
+        marginRight: "5px",
+    },
+
+
+
+
     error: {
         color: "red",
         fontSize: "12px",

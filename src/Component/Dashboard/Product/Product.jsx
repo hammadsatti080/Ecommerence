@@ -698,7 +698,7 @@ export default function Product() {
                                                             setCart((prev) =>
                                                                 prev.map((p) =>
                                                                     p._id === item._id &&
-                                                                    p.qty < item.stock
+                                                                        p.qty < item.stock
                                                                         ? { ...p, qty: p.qty + 1 }
                                                                         : p
                                                                 )
