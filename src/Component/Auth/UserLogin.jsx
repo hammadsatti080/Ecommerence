@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Forgetpswd from "./Forgetpswd";
 
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = "https://ecommerence-backend-jade.vercel.app/api";
 
 export default function UserLogin() {
   const [mode, setMode] = useState("login");

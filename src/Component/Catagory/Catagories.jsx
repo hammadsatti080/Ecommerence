@@ -6,7 +6,7 @@ export default function Catagories() {
     const [categories, setCategories] = useState([]);
     const [editId, setEditId] = useState(null);
 
-    const API = "http://localhost:5000/api/categories";
+    const API = "https://ecommerence-backend-jade.vercel.app/api/categories";
 
     // GET ALL
     const fetchCategories = async () => {

@@ -19,7 +19,7 @@ export default function MyReviews() {
         try {
 
             const res = await fetch(
-                `http://localhost:5000/api/contact/${userEmail}`
+                `https://ecommerence-backend-jade.vercel.app/api/contact/${userEmail}`
             );
 
             if (!res.ok) throw new Error("Failed to fetch reviews");

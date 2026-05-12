@@ -51,7 +51,7 @@ export default function Contact() {
         setStatus("");
 
         try {
-            const res = await fetch("http://localhost:5000/api/contact", {
+            const res = await fetch("https://ecommerence-backend-jade.vercel.app/api/contact", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

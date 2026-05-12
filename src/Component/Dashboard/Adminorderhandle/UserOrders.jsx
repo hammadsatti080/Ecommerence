@@ -17,7 +17,7 @@ export default function UserOrders() {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch(`http://localhost:5000/api/orders?email=${userEmail}`);
+      const res = await fetch(`https://ecommerence-backend-jade.vercel.app/api/orders?email=${userEmail}`);
       if (!res.ok) throw new Error("Failed to fetch orders");
       const data = await res.json();
       setOrders(data);

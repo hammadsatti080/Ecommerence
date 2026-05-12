@@ -26,8 +26,8 @@ export default function Productitem() {
     phone: ""
   });
 
-  const API = "http://localhost:5000/api/products";
-  const CAT_API = "http://localhost:5000/api/categories";
+  const API = "https://ecommerence-backend-jade.vercel.app/api/products";
+  const CAT_API = "https://ecommerence-backend-jade.vercel.app/api/categories";
 
   useEffect(() => {
     fetchProducts();
@@ -127,7 +127,7 @@ export default function Productitem() {
   const handleFinalPayment = async () => {
     try {
       // Step 1: Verify email is registered
-      const resCheck = await fetch("http://localhost:5000/api/auth/check-email", {
+      const resCheck = await fetch("https://ecommerence-backend-jade.vercel.app/api/auth/check-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: userInfo.email }),
@@ -139,7 +139,7 @@ export default function Productitem() {
       }
 
       // Step 2: Send order to backend
-      const resOrder = await fetch("http://localhost:5000/api/orders", {
+      const resOrder = await fetch("https://ecommerence-backend-jade.vercel.app/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ user: userInfo, cart }),
