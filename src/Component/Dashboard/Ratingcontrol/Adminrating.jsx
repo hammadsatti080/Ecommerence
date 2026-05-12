@@ -8,7 +8,7 @@ export default function Adminrating() {
     const [toast, setToast] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/contact")
+        fetch("https://ecommerence-bay.vercel.app/api/contact")
             .then((res) => res.json())
             .then((data) => {
                 setReviews(data);
@@ -48,7 +48,7 @@ export default function Adminrating() {
         try {
 
             const res = await fetch(
-                `http://localhost:5000/api/contact/${id}`,
+                `https://ecommerence-bay.vercel.app/api/contact/${id}`,
                 {
                     method: "DELETE",
                 }

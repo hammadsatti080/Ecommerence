@@ -194,7 +194,7 @@ const styles = {
         display: "flex",
         alignItems: "center",
         gap: "40px",
-        marginTop: "50px",
+        marginTop: "30px",
 
     },
 

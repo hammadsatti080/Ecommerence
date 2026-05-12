@@ -8,7 +8,7 @@ import Expenserecord from "./Expense/Expenserecord";
 import { FaFileInvoiceDollar } from "react-icons/fa";
 export default function Header() {
 
-  const [page, setPage] = useState("product");
+  const [page, setPage] = useState("expenserecord");
   const [selectedCategory, setSelectedCategory] = useState("");
 
   const navigate = useNavigate();
@@ -36,7 +36,18 @@ export default function Header() {
       <div style={sidebar}>
 
         <h3 style={heading}>⚙️ Admin Panel</h3>
-
+        <button
+          style={{
+            ...btn,
+            ...(page === "sale" ? activeBtn : {})
+          }}
+          onClick={() => {
+            setPage("expenserecord");
+            setSelectedCategory("");
+          }}
+        >
+          <FaFileInvoiceDollar /> Expense Record
+        </button>
         {/* PRODUCT */}
         <button
           style={{
@@ -78,18 +89,7 @@ export default function Header() {
         >
           🔐 Reviews
         </button>
-        <button
-          style={{
-            ...btn,
-            ...(page === "sale" ? activeBtn : {})
-          }}
-          onClick={() => {
-            setPage("expenserecord");
-            setSelectedCategory("");
-          }}
-        >
-          <FaFileInvoiceDollar /> Expense Record
-        </button>
+
         {/* ================= DROPDOWN ================= */}
         <div style={{ marginTop: "25px" }}>
           <label style={label}>Pages</label>
