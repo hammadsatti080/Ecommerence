@@ -3,17 +3,31 @@ import Categorys from "../Catagory/Catagories";
 import Product from "./Product/Product";
 import AdminOrders from "./Adminorderhandle/AdminOrders";
 import Adminrating from "./Ratingcontrol/Adminrating";
+import { useNavigate } from "react-router-dom";
+import Expenserecord from "./Expense/Expenserecord";
+import { FaFileInvoiceDollar } from "react-icons/fa";
+export default function Header() {
 
-
-export default function App() {
   const [page, setPage] = useState("product");
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const [categories] = useState([
-    "Add catagory",
-    "Add price",
-    "View list",
-  ]);
+  const navigate = useNavigate();
+
+  /* ================= MODERN CATEGORY STRUCTURE ================= */
+  const categories = [
+    { label: "Add Category", path: "/catagory" },
+    { label: "Expense Record", path: "/expenserecord" },
+    { label: "View List", path: "/view-list" },
+  ];
+
+  /* ================= DROPDOWN NAVIGATION ================= */
+  const handleChange = (e) => {
+    const path = e.target.value;
+
+    if (path) {
+      navigate(path);
+    }
+  };
 
   return (
     <div style={{ display: "flex", height: "100vh" }}>
@@ -50,7 +64,8 @@ export default function App() {
         >
           💰 Sale
         </button>
-        {/* Reviews */}
+
+        {/* REVIEWS */}
         <button
           style={{
             ...btn,
@@ -63,24 +78,31 @@ export default function App() {
         >
           🔐 Reviews
         </button>
-
-
-        {/* CATEGORY */}
+        <button
+          style={{
+            ...btn,
+            ...(page === "sale" ? activeBtn : {})
+          }}
+          onClick={() => {
+            setPage("expenserecord");
+            setSelectedCategory("");
+          }}
+        >
+          <FaFileInvoiceDollar /> Expense Record
+        </button>
+        {/* ================= DROPDOWN ================= */}
         <div style={{ marginTop: "25px" }}>
-          <label style={label}>Categories</label>
+          <label style={label}>Pages</label>
 
           <select
             style={dropdown}
-            value={selectedCategory}
-            onChange={(e) => {
-              setSelectedCategory(e.target.value);
-              setPage("");
-            }}
+            onChange={handleChange}
           >
-            <option value="">Select Category</option>
+            <option value="">Select Page</option>
+
             {categories.map((cat, i) => (
-              <option key={i} value={cat}>
-                {cat}
+              <option key={i} value={cat.path}>
+                {cat.label}
               </option>
             ))}
           </select>
@@ -95,17 +117,17 @@ export default function App() {
         {selectedCategory && (
           <div style={card}>
             <h2>📦 {selectedCategory}</h2>
-
             <Categorys />
           </div>
         )}
 
-        {/* PAGES */}
+        {/* MAIN PAGES */}
         {!selectedCategory && (
           <>
             {page === "product" && <Product />}
             {page === "sale" && <AdminOrders />}
             {page === "review" && <Adminrating />}
+            {page === "expenserecord" && <Expenserecord />}
 
           </>
         )}
@@ -131,7 +153,6 @@ const heading = {
   marginBottom: "30px",
   fontSize: "18px",
   fontWeight: "600",
-  color: "#f1f5f9",
 };
 
 const btn = {
@@ -143,8 +164,6 @@ const btn = {
   border: "none",
   borderRadius: "8px",
   cursor: "pointer",
-  fontSize: "14px",
-  transition: "0.3s",
   textAlign: "left",
 };
 

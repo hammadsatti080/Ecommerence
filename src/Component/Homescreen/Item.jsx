@@ -1,9 +1,11 @@
-import React, { useEffect, useState  } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 export default function Item() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState("");
+  const [sortOrder, setSortOrder] = useState("");
 
   const PRODUCT_API = "http://localhost:5000/api/products";
   const CATEGORY_API = "http://localhost:5000/api/categories";
@@ -43,17 +45,34 @@ export default function Item() {
     return (p - (p * d) / 100).toFixed(2);
   };
 
-  const filteredProducts = products.filter(
+  /* ================= FILTER PRODUCTS ================= */
+  let filteredProducts = products.filter(
     (p) => p.category === activeCategory
   );
 
+  /* ================= SORT PRODUCTS ================= */
+  if (sortOrder === "lowToHigh") {
+    filteredProducts.sort(
+      (a, b) =>
+        Number(getFinalPrice(a.price, a.discount)) -
+        Number(getFinalPrice(b.price, b.discount))
+    );
+  }
+
+  if (sortOrder === "highToLow") {
+    filteredProducts.sort(
+      (a, b) =>
+        Number(getFinalPrice(b.price, b.discount)) -
+        Number(getFinalPrice(a.price, a.discount))
+    );
+  }
+
   const navigate = useNavigate();
-  // NAVIGATION (route-ready)
 
+  const handleBuyNow = (product) => {
+    navigate(`/prod/${product._id}`);
+  };
 
-const handleBuyNow = (product) => {
-  navigate(`/prod/${product._id}`);
-};
   return (
     <div style={{ padding: "20px", background: "#f6f7fb", minHeight: "100vh" }}>
 
@@ -65,21 +84,37 @@ const handleBuyNow = (product) => {
         </p>
       </div>
 
-      {/* ================= CATEGORY ROW ================= */}
-      <div style={styles.categoryRow}>
-        {categories.map((cat) => (
-          <button
-            key={cat._id}
-            style={
-              activeCategory === cat.name
-                ? styles.activeBtn
-                : styles.catBtn
-            }
-            onClick={() => setActiveCategory(cat.name)}
-          >
-            {cat.name}
-          </button>
-        ))}
+      {/* ================= TOP BAR ================= */}
+      <div style={styles.topBar}>
+
+        {/* CATEGORY ROW */}
+        <div style={styles.categoryRow}>
+          {categories.map((cat) => (
+            <button
+              key={cat._id}
+              style={
+                activeCategory === cat.name
+                  ? styles.activeBtn
+                  : styles.catBtn
+              }
+              onClick={() => setActiveCategory(cat.name)}
+            >
+              {cat.name}
+            </button>
+          ))}
+        </div>
+
+        {/* SORT DROPDOWN */}
+        <select
+          style={styles.select}
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+        >
+          <option value="">Sort By Price</option>
+          <option value="lowToHigh">Price: Low → High</option>
+          <option value="highToLow">Price: High → Low</option>
+        </select>
+
       </div>
 
       {/* ================= PRODUCTS ================= */}
@@ -100,17 +135,21 @@ const handleBuyNow = (product) => {
                 </p>
               )}
 
-              <p style={{ fontSize: "12px", color: p.stock > 0 ? "green" : "red" }}>
+              <p
+                style={{
+                  fontSize: "12px",
+                  color: p.stock > 0 ? "green" : "red"
+                }}
+              >
                 Stock: {p.stock}
               </p>
 
-              {/* ================= BUY NOW BUTTON ================= */}
-             <button
-  style={styles.buyBtn}
-  onClick={() => handleBuyNow(p)}
->
-  Buy Now →
-</button>
+              <button
+                style={styles.buyBtn}
+                onClick={() => handleBuyNow(p)}
+              >
+                Buy Now →
+              </button>
 
             </div>
 
@@ -124,7 +163,6 @@ const handleBuyNow = (product) => {
 /* ================= STYLES ================= */
 const styles = {
 
-  /* HEADER */
   headerBox: {
     textAlign: "center",
     marginBottom: "20px",
@@ -146,12 +184,21 @@ const styles = {
     opacity: 0.8
   },
 
+  /* TOP BAR */
+  topBar: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexWrap: "wrap",
+    gap: "15px",
+    marginBottom: "20px"
+  },
+
   /* CATEGORY */
   categoryRow: {
     display: "flex",
     gap: "10px",
     overflowX: "auto",
-    marginBottom: "20px",
     paddingBottom: "10px"
   },
 
@@ -172,6 +219,17 @@ const styles = {
     color: "#fff",
     cursor: "pointer",
     whiteSpace: "nowrap"
+  },
+
+  /* SELECT */
+  select: {
+    padding: "10px 14px",
+    borderRadius: "10px",
+    border: "1px solid #ddd",
+    background: "#fff",
+    cursor: "pointer",
+    outline: "none",
+    fontWeight: "500"
   },
 
   /* GRID */
@@ -220,7 +278,6 @@ const styles = {
     margin: 0
   },
 
-  /* BUY BUTTON */
   buyBtn: {
     marginTop: "10px",
     padding: "10px",

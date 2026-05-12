@@ -4,6 +4,7 @@ import About from '../Component/Homescreen/About'
 import Item from '../Component/Homescreen/Item'
 import Review from '../Component/Homescreen/Review'
 import FAQ from '../Component/Homescreen/FAQ'
+import Howwecome from '../Component/Homescreen/Howwecome'
 
 export default function Home() {
   useEffect(() => {
@@ -17,6 +18,7 @@ export default function Home() {
       <Header />
       <About />
       <Item />
+      <Howwecome />
       <Review />
       <FAQ />
     </div>

@@ -1,16 +1,7 @@
 import { useEffect, useState } from "react";
-const images = ["/Homescreen/Home.jpg", "/Homescreen/Home2.jpg"];
+import { useNavigate } from "react-router-dom";
+
 export default function Header() {
-
-    const [index, setIndex] = useState(0);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setIndex((prev) => (prev + 1) % images.length);
-        }, 4000); // slow change (4 sec)
-
-        return () => clearInterval(interval);
-    }, []);
 
     const text =
         "Discover premium products at unbeatable prices. Your one-stop ecommerce destination for fashion, gadgets, and more.";
@@ -27,23 +18,38 @@ export default function Header() {
             if (i > text.length) {
                 clearInterval(interval);
             }
-        }, 30); // speed (lower = faster)
+        }, 30);
 
         return () => clearInterval(interval);
     }, []);
-
+   const navigate = useNavigate();
+    const handlebutton =()=>{
+navigate("/prod")
+    }
+     
     return (
         <div
             style={{
                 width: "100%",
                 height: "90vh",
-                backgroundImage: `url(${images[index]})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                transition: "background-image 1s ease-in-out",
+
+                /* Beautiful Gradient Background */
+                background: `linear-gradient(
+                    135deg,
+                    #0f2027,
+                    #203a43,
+                    #2c5364,
+                    #6a11cb,
+                    #2575fc
+                )`,
+
+                backgroundSize: "400% 400%",
+                animation: "gradientMove 12s ease infinite",
+
                 display: "flex",
                 alignItems: "center",
-                position: "relative"
+                position: "relative",
+                overflow: "hidden"
             }}
         >
             {/* Dark overlay */}
@@ -51,23 +57,89 @@ export default function Header() {
                 style={{
                     position: "absolute",
                     inset: 0,
-                    background: "rgba(0,0,0,0.45)"
+                    background: "rgba(0,0,0,0.35)"
+                }}
+            ></div>
+
+            {/* Glowing circles */}
+            <div
+                style={{
+                    position: "absolute",
+                    width: "300px",
+                    height: "300px",
+                    background: "rgba(255,255,255,0.08)",
+                    borderRadius: "50%",
+                    top: "-80px",
+                    right: "-80px",
+                    filter: "blur(20px)"
+                }}
+            ></div>
+
+            <div
+                style={{
+                    position: "absolute",
+                    width: "250px",
+                    height: "250px",
+                    background: "rgba(255,255,255,0.05)",
+                    borderRadius: "50%",
+                    bottom: "-70px",
+                    left: "-70px",
+                    filter: "blur(20px)"
                 }}
             ></div>
 
             {/* Content */}
             <div className="container text-white position-relative">
-                <h1 style={{ fontSize: "3rem", fontWeight: "700" }}>
+                <h1
+                    style={{
+                        fontSize: "3.5rem",
+                        fontWeight: "800",
+                        letterSpacing: "1px"
+                    }}
+                >
                     Shop Smart, Live Better
                 </h1>
 
-                <p style={{ maxWidth: 500, fontSize: "1.1rem", marginTop: 15 }}>
+                <p
+                    style={{
+                        maxWidth: 550,
+                        fontSize: "1.15rem",
+                        marginTop: 20,
+                        lineHeight: "1.8"
+                    }}
+                >
                     {displayText}
                     <span style={{ borderRight: "2px solid #fff" }}></span>
                 </p>
 
-
+                <button
+                    className="btn btn-light btn-lg mt-4 px-4"
+                    onClick={handlebutton}
+                    style={{
+                        borderRadius: "30px",
+                        fontWeight: "600"
+                    }}
+                >
+                    Explore Products
+                </button>
             </div>
+
+            {/* Gradient Animation */}
+            <style>
+                {`
+                    @keyframes gradientMove {
+                        0% {
+                            background-position: 0% 50%;
+                        }
+                        50% {
+                            background-position: 100% 50%;
+                        }
+                        100% {
+                            background-position: 0% 50%;
+                        }
+                    }
+                `}
+            </style>
         </div>
     );
 }

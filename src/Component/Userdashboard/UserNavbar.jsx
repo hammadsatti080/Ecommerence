@@ -1,64 +1,81 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from "../Homescreen/Header";
 import 'bootstrap-icons/font/bootstrap-icons.css';
-export default function UserNavbar({ loggedInUser }) {
+
+export default function UserNavbar() {
+
+  const cards = [
+    {
+      title: "Order History",
+      icon: "bi bi-clock-history",
+      link: "/userorders"
+    },
+    {
+      title: "User Rating",
+      icon: "bi bi-star-fill",
+      link: "/Userrating"
+    },
+    {
+      title: "Logout",
+      icon: "bi bi-box-arrow-right",
+      link: "/"
+    }
+  ];
+
   return (
     <div>
-      <nav className="navbar navbar-expand-md navbar-light bg-light sticky-top shadow-sm">
-        <div className="container-fluid">
 
-          {/* Optional Brand */}
-          
+      {/* Cards Section */}
+      <div className="container mt-2 full-height">
+        <div className="row g-4 justify-content-center">
 
-          {/* Hamburger Toggle for Mobile */}
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+          {cards.map((card, index) => (
+            <div key={index} className="col-md-4 col-sm-6">
 
-          {/* Links */}
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mb-2 mb-md-0 gap-3" style={{marginLeft:"100px"}}>
-                
-              <li className="nav-item">
-    <a className="nav-link fw-bold d-flex align-items-center" href="/userorders">
-      <i className="bi bi-clock-history me-1"></i> Order History
-    </a>
-  </li>
-  <li className="nav-item">
-    <a className="nav-link fw-bold d-flex align-items-center" href="/Userrating">
-      <i className="bi bi-bag-fill me-1"></i> User Rating
-    </a>
-  </li>
-  <li className="nav-item">
-    <a className="nav-link fw-bold d-flex align-items-center" href="/">
-      <i className="bi bi-box-arrow-right me-1"></i> Logout
-    </a>
-  </li>
-            </ul>
-          </div>
+              <a href={card.link} style={{ textDecoration: "none" }}>
+                <div className="card text-center shadow-sm p-4 h-100 hover-card">
+
+                  <i className={`${card.icon} fs-1 mb-3`}></i>
+
+                  <h5 className="fw-bold">{card.title}</h5>
+
+                </div>
+              </a>
+
+            </div>
+          ))}
+
         </div>
+      </div>
 
-        {/* Optional Custom Hover */}
-        <style>
-          {`
-            .navbar-nav .nav-link:hover {
-              color: #ff6600 !important;
-              transition: color 0.3s ease;
-            }
-          `}
-        </style>
-      </nav>
 
-      <Header />
+
+      {/* Hover effect */}
+      <style>{`
+
+      .full-height {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+        .hover-card {
+          cursor: pointer;
+          transition: 0.3s ease;
+          border-radius: 12px;
+        }
+
+        .hover-card:hover {
+          transform: translateY(-5px);
+          background-color: #f8f9fa;
+          box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        i {
+          color: #ff6600;
+        }
+      `}</style>
+
     </div>
   );
 }

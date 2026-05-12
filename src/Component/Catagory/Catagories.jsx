@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function Categorys() {
+export default function Catagories() {
     const [category, setCategory] = useState("");
     const [categories, setCategories] = useState([]);
     const [editId, setEditId] = useState(null);
@@ -67,6 +68,10 @@ export default function Categorys() {
         setEditId(cat._id);
     };
 
+    const navigate = useNavigate();
+    const handlego = () => {
+        navigate("/dashboards")
+    }
     return (
         <div style={page}>
 
@@ -85,6 +90,9 @@ export default function Categorys() {
 
                     <button onClick={handleAddOrUpdate} style={button}>
                         {editId ? "Update" : "Add"}
+                    </button>
+                    <button onClick={handlego} style={button}>
+                        Go back
                     </button>
                 </div>
             </div>
@@ -124,7 +132,7 @@ const page = {
     padding: "20px",
     maxWidth: "900px",
     margin: "auto",
-    background: "#f8f9fa",
+    background: "white",
     minHeight: "100vh",
 };
 

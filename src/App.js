@@ -15,6 +15,8 @@ import AdminOrders from './Component/Dashboard/Adminorderhandle/AdminOrders';
 import UserOrders from './Component/Dashboard/Adminorderhandle/UserOrders';
 import UserNavbar from './Component/Userdashboard/UserNavbar';
 import Userrating from './Component/Dashboard/Ratingcontrol/Userrating';
+import Expenserecord from './Component/Dashboard/Expense/Expenserecord';
+import Catagories from './Component/Catagory/Catagories';
 
 
 function App() {
@@ -38,6 +40,8 @@ function App() {
           <Route path="/userorders" element={<UserOrders />} />
           <Route path="/usernavbar" element={<UserNavbar />} />
           <Route path="/Userrating" element={<Userrating />} />
+          <Route path="/expenserecord" element={<Expenserecord />} />
+          <Route path="/catagory" element={<Catagories />} />
         </Routes>
         <Footer />
       </div>
