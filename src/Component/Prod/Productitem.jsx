@@ -37,15 +37,25 @@ export default function Productitem() {
   const fetchProducts = async () => {
     const res = await fetch(API);
     const data = await res.json();
-    setProducts(data);
+
+    const filtered = data.filter(
+      (p) =>
+        (p.category || "").toLowerCase() !== "future product"
+    );
+
+    setProducts(filtered);
   };
 
   const fetchCategories = async () => {
     const res = await fetch(CAT_API);
     const data = await res.json();
-    setCategories(data);
-  };
+    const filtered = data.filter(
+      (c) =>
+        (c.name || "").toLowerCase() !== "future product" // catgory name agar ni equal ho (future prod) then show kro
+    );
 
+    setCategories(filtered);
+  };
   const getFinalPrice = (price, discount) => {
     const p = Number(price);
     const d = Number(discount || 0);
