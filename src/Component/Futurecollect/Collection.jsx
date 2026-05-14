@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function Item() {
+export default function Collection() {
   const [products, setProducts] = useState([]);
   const [genderFilter, setGenderFilter] = useState("male");
   const [nameFilter, setNameFilter] = useState("");
@@ -35,18 +35,16 @@ export default function Item() {
 
     const name = p.name.toLowerCase();
 
-    // gender filter
     if (genderFilter === "male" && !name.includes("(male)")) return false;
     if (genderFilter === "female" && !name.includes("(female)")) return false;
 
-    // name search filter
     if (nameFilter && !name.includes(nameFilter.toLowerCase())) return false;
 
     return true;
   });
 
   return (
-    <div style={{ padding: "20px", background: "#f6f7fb", minHeight: "100vh" }}>
+    <div style={{ padding: "20px", minHeight: "60vh" }}>
 
       {/* HEADER */}
       <div style={styles.headerBox}>
@@ -56,7 +54,6 @@ export default function Item() {
       {/* FILTERS */}
       <div style={styles.topBar}>
 
-        {/* GENDER */}
         <select
           style={styles.select}
           value={genderFilter}
@@ -66,7 +63,6 @@ export default function Item() {
           <option value="female">Female</option>
         </select>
 
-        {/* NAME SEARCH */}
         <input
           type="text"
           placeholder="Search (e.g. Leather shoes)"
@@ -74,7 +70,6 @@ export default function Item() {
           onChange={(e) => setNameFilter(e.target.value)}
           style={styles.input}
         />
-
       </div>
 
       {/* PRODUCTS */}
@@ -169,16 +164,26 @@ const styles = {
     width: "220px"
   },
 
+  /* ✅ HORIZONTAL SCROLL GRID */
   grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
-    gap: "16px"
+    display: "flex",
+    gap: "16px",
+    overflowX: "auto",
+    paddingBottom: "10px",
+    scrollBehavior: "smooth",
+    WebkitOverflowScrolling: "touch",
+    scrollbarWidth: "none"
   },
+
+  /* hide scrollbar (Chrome) */
+  gridHideScroll: {},
 
   cardContainer: {
     perspective: "1000px",
     height: "250px",
-    cursor: "pointer"
+    cursor: "pointer",
+    minWidth: "220px",
+    flex: "0 0 auto"
   },
 
   cardInner: {
@@ -223,8 +228,7 @@ const styles = {
     fontSize: "11px",
     opacity: 0.8,
     position: "absolute",
-    bottom: "10px",
-  
+    bottom: "10px"
   },
 
   emptyBox: {

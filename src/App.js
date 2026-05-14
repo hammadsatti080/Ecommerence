@@ -17,7 +17,7 @@ import UserNavbar from './Component/Userdashboard/UserNavbar';
 import Userrating from './Component/Dashboard/Ratingcontrol/Userrating';
 import Expenserecord from './Component/Dashboard/Expense/Expenserecord';
 import Catagories from './Component/Catagory/Catagories';
-import Collection from './Component/Futurecollect/Collection';
+import Maincollection from './Pages/Maincollection';
 
 
 function App() {
@@ -43,7 +43,7 @@ function App() {
           <Route path="/Userrating" element={<Userrating />} />
           <Route path="/expenserecord" element={<Expenserecord />} />
           <Route path="/catagory" element={<Catagories />} />
-            <Route path="/collect" element={<Collection />} />
+            <Route path="/collect" element={<Maincollection />} />
         </Routes>
         <Footer />
       </div>

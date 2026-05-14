@@ -622,8 +622,8 @@ export default function Product() {
                         <div style={{ padding: "10px" }}>
                             <h4>{p.name}</h4>
 
-                            <p>Price: ${p.price}</p>
-                            <p>Final: ${getFinalPrice(p.price, p.discount)}</p>
+                            <p>Price: {p.price}</p>
+                            <p>Final: {getFinalPrice(p.price, p.discount)}</p>
                             <p>{p.category}</p>
 
                             {/* ✅ STOCK DISPLAY */}
@@ -675,8 +675,8 @@ export default function Product() {
                                         <div key={item._id} style={cartItem}>
                                             <div>
                                                 <b>{item.name}</b>
-                                                <p>${price.toFixed(2)}</p>
-                                                <p>Total: ${(price * item.qty).toFixed(2)}</p>
+                                                <p>{price.toFixed(2)}</p>
+                                                <p>Total: {(price * item.qty).toFixed(2)}</p>
 
                                                 <div style={{ display: "flex", gap: "10px" }}>
                                                     <button
@@ -715,7 +715,7 @@ export default function Product() {
                                     );
                                 })}
 
-                                <h3>Total: ${grandTotal}</h3>
+                                <h3>Total: {grandTotal}</h3>
                             </>
                         )}
 

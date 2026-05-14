@@ -368,12 +368,12 @@ export default function Productitem() {
                     <h4>{p.name}</h4>
 
                     <p style={{ textDecoration: p.discount ? "line-through" : "none", color: "#888" }}>
-                      ${p.price}
+                      {p.price}
                     </p>
 
                     {p.discount > 0 && (
                       <p style={{ color: "#16a34a", fontWeight: "bold" }}>
-                        ${getFinalPrice(p.price, p.discount)} (-{p.discount}%)
+                        {getFinalPrice(p.price, p.discount)} (-{p.discount}%)
                       </p>
                     )}
                     {/* STOCK */}
@@ -420,7 +420,7 @@ export default function Productitem() {
               </div>
             ))}
 
-            <h3>Total: ${grandTotal}</h3>
+            <h3>Total: {grandTotal}</h3>
 
             <div className="modal-actions">
               <button className="pay-btn" onClick={() => setShowUserForm(true)}>Pay</button>
