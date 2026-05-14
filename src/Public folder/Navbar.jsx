@@ -61,6 +61,7 @@ export default function Navbar() {
             {[
               { name: "Home", path: "/", icon: "bi-house" },
               { name: "Product", path: "/prod", icon: "bi-box-seam" },
+               { name: "Future Collection", path: "/collect", icon: "bi-lightning-charge"  },
             ].map((item) => (
               <li className="nav-item" key={item.name}>
 
