@@ -424,7 +424,7 @@ export default function Product() {
 
     const [cart, setCart] = useState([]);
 
-    const API = "https://ecommerence-backend-jade.vercel.app/api/products";
+    const API = "https://ecommerence-backend-jade.vercel.app0/api/products";
     const CAT_API = "https://ecommerence-backend-jade.vercel.app/api/categories";
 
     const [form, setForm] = useState({

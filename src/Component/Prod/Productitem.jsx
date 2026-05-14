@@ -1,9 +1,6 @@
 /*
 Backup data are in Backupproduct.jsx file
 */
-
-
-
 import React, { useEffect, useState } from "react";
 
 export default function Productitem() {
@@ -171,6 +168,43 @@ export default function Productitem() {
     }
   };
 
+
+
+  //saved
+  const handleSave = async (product) => {
+    const email = prompt("Enter your email to save product:");
+
+    if (!email) return;
+
+    // 1. AUTH CHECK
+    const res = await fetch(
+      "https://ecommerence-backend-jade.vercel.app/api/auth/check-email",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      }
+    );
+
+    const data = await res.json();
+
+    if (!data.exists) {
+      alert("User not registered!");
+      return;
+    }
+
+    // 2. SAVE TO BACKEND
+    await fetch("https://ecommerence-backend-jade.vercel.app/api/saved/save", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userEmail: email,
+        product,
+      }),
+    });
+
+    alert("Saved successfully ❤️");
+  };
   return (
     <div className="app">
 
@@ -390,7 +424,12 @@ export default function Productitem() {
                     <p style={{ color: p.stock ? "green" : "red" }}>
                       Stock: {p.stock}
                     </p>
-
+                    <button
+                      onClick={() => handleSave(p)}
+                      style={{ background: "transparent", border: "none", cursor: "pointer" }}
+                    >
+                      🤍 Save
+                    </button>
                     <button
                       className="add-cart-btn"
                       onClick={() => addToCart(p)}

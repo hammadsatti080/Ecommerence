@@ -91,7 +91,7 @@ export default function UserOrders() {
                       </div>
                     ))}
                   </td>
-                  <td style={tdStyle}>${o.totalPrice.toFixed(2)}</td>
+                  <td style={tdStyle}>{o.totalPrice.toFixed(2)}</td>
                   <td style={tdStyle}>{o.status}</td>
                   <td style={tdStyle}>{o.deliveryTime || "Not set"}</td>
                 </tr>

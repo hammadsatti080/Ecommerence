@@ -18,6 +18,7 @@ import Userrating from './Component/Dashboard/Ratingcontrol/Userrating';
 import Expenserecord from './Component/Dashboard/Expense/Expenserecord';
 import Catagories from './Component/Catagory/Catagories';
 import Maincollection from './Pages/Maincollection';
+import SavedProduct from './Component/Prod/Savedproduct';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
           <Route path="/expenserecord" element={<Expenserecord />} />
           <Route path="/catagory" element={<Catagories />} />
             <Route path="/collect" element={<Maincollection />} />
+              <Route path="/save" element={<SavedProduct />} />
         </Routes>
         <Footer />
       </div>

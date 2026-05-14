@@ -16,6 +16,11 @@ export default function UserNavbar() {
       link: "/Userrating"
     },
     {
+      title: "Saved",
+      icon: "bi bi-star-fill",
+      link: "/save"
+    },
+    {
       title: "Logout",
       icon: "bi bi-box-arrow-right",
       link: "/"
