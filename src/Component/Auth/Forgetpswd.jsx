@@ -115,7 +115,7 @@ export default function ForgetPasswordCaptcha() {
         <div>
             <button
                 onClick={() => setIsModalOpen(true)}
-                style={{ ...buttonStyle, maxWidth: "200px", margin: "50px auto", display: "block" }}
+                style={{ ...buttonStyle, maxWidth: "200px", margin: "10px auto", display: "block" }}
             >
                 Forget Password
             </button>

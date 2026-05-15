@@ -4,7 +4,7 @@ import Forgetpswd from "./Forgetpswd";
 const API_BASE = "https://ecommerence-backend-jade.vercel.app/api";
 
 export default function UserLogin() {
-  const [mode, setMode] = useState("login");
+  const [mode, setMode] = useState("signup");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
 
@@ -145,6 +145,7 @@ export default function UserLogin() {
               >
                 Sign Up
               </span>
+               <Forgetpswd />
             </p>
           </>
         )}
@@ -198,7 +199,7 @@ export default function UserLogin() {
                 Login
               </span>
 
-              <Forgetpswd />
+             
 
             </p>
           </>
