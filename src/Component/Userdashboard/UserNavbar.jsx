@@ -20,6 +20,11 @@ export default function UserNavbar() {
       icon: "bi bi-star-fill",
       link: "/save"
     },
+     {
+      title: "User Prof",
+      icon:  "bi bi-person-circle",
+      link: "/userprof"
+    },
     {
       title: "Logout",
       icon: "bi bi-box-arrow-right",
