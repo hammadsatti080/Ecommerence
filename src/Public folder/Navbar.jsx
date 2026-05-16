@@ -1,6 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-
+import RatingModal from "./RatingModal";
+import { FaStar } from "react-icons/fa";
+import { useState } from "react";
 export default function Navbar() {
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   const handlelog = () => {
@@ -78,7 +81,18 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="d-flex align-items-center gap-4 ms-lg-3 mt-3 mt-lg-0">
-
+           
+           <button
+                className="btn border"
+                onClick={() => setShowModal(true)}
+                style={{
+                  borderRadius: "10px",
+                  width: "45px",
+                  height: "45px"
+                }}
+              >
+                <FaStar color="#f5b301" size={20} />
+              </button>
             <button
               className="btn text-white px-4"
               style={{
@@ -93,6 +107,11 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+       <RatingModal
+        show={showModal}
+        handleClose={() => setShowModal(false)}
+      />
     </nav>
+    
   );
 }
