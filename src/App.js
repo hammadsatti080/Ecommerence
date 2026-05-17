@@ -20,6 +20,7 @@ import Catagories from './Component/Catagory/Catagories';
 import Maincollection from './Pages/Maincollection';
 import SavedProduct from './Component/Prod/Savedproduct';
 import UserProfile from './Component/Dashboard/UserProfilee/UserProfile';
+import TermsConditions from './Public folder/TermsConditions';
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
           <Route path="/collect" element={<Maincollection />} />
           <Route path="/save" element={<SavedProduct />} />
           <Route path="/userprof" element={<UserProfile />} />
+          <Route path="/terms" element={<TermsConditions />} />
         </Routes>
         <Footer />
       </div>

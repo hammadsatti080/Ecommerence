@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import TermsConditions from "../../Public folder/TermsConditions";
 
 export default function Header() {
 
@@ -22,11 +23,18 @@ export default function Header() {
 
         return () => clearInterval(interval);
     }, []);
-   const navigate = useNavigate();
-    const handlebutton =()=>{
-navigate("/prod")
+    const navigate = useNavigate();
+    const handlebutton = () => {
+        navigate("/prod")
     }
-     
+
+    const [openModal, setOpenModal] = useState(false);
+
+    // button function
+    const handlebuttons = () => {
+        setOpenModal(true);
+    };
+
     return (
         <div
             style={{
@@ -113,7 +121,7 @@ navigate("/prod")
                 </p>
 
                 <button
-                    className="btn btn-light btn-lg mt-4 px-4"
+                    className="btn btn-light btn-lg mt-4 px-4 mx-4"
                     onClick={handlebutton}
                     style={{
                         borderRadius: "30px",
@@ -122,6 +130,51 @@ navigate("/prod")
                 >
                     Explore Products
                 </button>
+                <button
+                    className="btn btn-light btn-lg mt-4 px-4"
+                    onClick={handlebuttons}
+                    style={{
+                        borderRadius: "30px",
+                        fontWeight: "600",
+                        marginLeft: "20px"
+                    }}
+                >
+                    Terms & Conditions
+                </button>
+                {/* Modal */}
+                {openModal && (
+                    <div
+                        style={{
+                            position: "fixed",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: "100vh",
+                            //    background: "rgba(0,0,0,0.6)",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            zIndex: 999
+                        }}
+                    >
+                        <div
+                            style={{
+
+                                width: "90%",
+                                maxWidth: "380px",
+                                padding: "10px",
+                                borderRadius: "20px",
+                                position: "relative",
+                                maxHeight: "90vh",
+
+                            }}
+                        >
+
+                            {/* Separate Component */}
+                            <TermsConditions setOpenModal={setOpenModal} />
+                        </div>
+                    </div>
+                )}
             </div>
 
             {/* Gradient Animation */}

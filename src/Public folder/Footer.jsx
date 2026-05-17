@@ -1,13 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { React, useState } from "react";
+import TermsConditions from "./TermsConditions";
 
 export default function Footer() {
+
+    const [openModal, setOpenModal] = useState(false);
+
+    const handlebuttons = () => {
+        setOpenModal(true);
+    };
+
     return (
         <footer style={styles.footer}>
 
             <div style={styles.container}>
 
-                {/* ================= BRAND ================= */}
+                {/* BRAND */}
                 <div style={styles.col}>
                     <h2 style={styles.logo}>🛒 Ecommerce</h2>
                     <p style={styles.text}>
@@ -15,29 +22,35 @@ export default function Footer() {
                     </p>
                 </div>
 
-                {/* ================= QUICK LINKS ================= */}
+                {/* QUICK LINKS */}
                 <div style={styles.col}>
                     <h3 style={styles.title}>Quick Links</h3>
 
                     <div style={styles.supportRow}>
-                        <Link to="/" style={styles.link}>Home</Link>
-                        <Link to="/prod" style={styles.link}>Products</Link>
-                        <Link to="/prod/69fa422a5b01f116d5f8e1c3" style={styles.link}>Cart</Link>
-                        <Link to="/FAQ" style={styles.link}>Contact</Link>
+                        <a href="/" style={styles.link}>Home</a>
+                        <a href="/prod" style={styles.link}>Products</a>
+                        <a href="/FAQ" style={styles.link}>Contact</a>
                     </div>
                 </div>
 
-                {/* ================= SUPPORT ================= */}
+                {/* SUPPORT */}
                 <div style={styles.col}>
                     <h3 style={styles.title}>Support</h3>
 
                     <div style={styles.supportRow}>
-                        <a href="/FAQ" style={styles.link}>FAQ</a>
-                        <a href="/FAQ" style={styles.link}>Privacy Policy</a>
+                        <a href="/FAQ" style={styles.link}>Contact</a>
+
+                        {/* SMALL BUTTON */}
+                        <button
+                            onClick={handlebuttons}
+                            style={styles.smallBtn}
+                        >
+                            Terms & Conditions
+                        </button>
                     </div>
                 </div>
 
-                {/* ================= CONTACT ================= */}
+                {/* CONTACT */}
                 <div style={styles.col}>
                     <h3 style={styles.title}>Contact</h3>
                     <p style={styles.text}>📧 support@ecommerce.com</p>
@@ -47,16 +60,25 @@ export default function Footer() {
 
             </div>
 
-            {/* ================= BOTTOM ================= */}
+            {/* FOOTER BOTTOM */}
             <div style={styles.bottom}>
                 © {new Date().getFullYear()} Ecommerce. All rights reserved.
             </div>
+
+            {/* MODAL OUTSIDE FLEX (IMPORTANT FIX) */}
+            {openModal && (
+                <div style={styles.modalOverlay}>
+                    <div style={styles.modalBox}>
+                        <TermsConditions setOpenModal={setOpenModal} />
+                    </div>
+                </div>
+            )}
 
         </footer>
     );
 }
 
-/* ================= INLINE STYLES ================= */
+/* ================= STYLES ================= */
 const styles = {
 
     footer: {
@@ -95,14 +117,12 @@ const styles = {
         fontSize: "13px",
         color: "#bbb",
         marginBottom: "8px",
-        lineHeight: "1.5",
     },
 
-    /* LINKS ROW */
     supportRow: {
         display: "flex",
         flexDirection: "column",
-        gap: "6px",
+        gap: "8px",
     },
 
     link: {
@@ -110,7 +130,18 @@ const styles = {
         color: "#bbb",
         textDecoration: "none",
         cursor: "pointer",
-        transition: "0.3s",
+    },
+
+    /* ✅ SMALL BUTTON */
+    smallBtn: {
+        background: "#222",
+        color: "#bbb",
+        border: "1px solid #333",
+        padding: "6px 10px",
+        fontSize: "12px",
+        borderRadius: "20px",
+        cursor: "pointer",
+        width: "fit-content"
     },
 
     bottom: {
@@ -120,4 +151,25 @@ const styles = {
         fontSize: "12px",
         color: "#888",
     },
+
+    /* MODAL */
+    modalOverlay: {
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100vh",
+        background: "rgba(0,0,0,0.6)",
+        backdropFilter: "blur(5px)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: 999,
+        padding: "15px"
+    },
+
+    modalBox: {
+        width: "100%",
+        maxWidth: "380px",
+    }
 };
