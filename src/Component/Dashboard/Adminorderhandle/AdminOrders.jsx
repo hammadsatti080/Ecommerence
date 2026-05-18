@@ -158,8 +158,8 @@ export default function AdminOrders() {
         setError("");
         try {
             const url = filterStatus
-                ? `https://ecommerence-backend-jade.vercel.app/api/orders?status=${filterStatus}`
-                : "https://ecommerence-backend-jade.vercel.app/api/orders";
+                ? `https://ecommerence-bay.vercel.app/api/orders?status=${filterStatus}`
+                : "https://ecommerence-bay.vercel.app/api/orders";
 
             const res = await fetch(url);
             if (!res.ok) throw new Error("Failed to fetch orders");
@@ -180,7 +180,7 @@ export default function AdminOrders() {
 
     const changeStatus = async (id, status) => {
         try {
-            await fetch(`https://ecommerence-backend-jade.vercel.app/api/orders/${id}`, {
+            await fetch(`https://ecommerence-bay.vercel.app/api/orders/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ status }),
@@ -194,7 +194,7 @@ export default function AdminOrders() {
 
     const changeDeliveryTime = async (id, deliveryTime) => {
         try {
-            await fetch(`https://ecommerence-backend-jade.vercel.app/api/orders/${id}`, {
+            await fetch(`https://ecommerence-bay.vercel.app/api/orders/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ deliveryTime }),
@@ -206,6 +206,21 @@ export default function AdminOrders() {
         }
     };
 
+    const deleteOrder = async (id) => {
+        if (!window.confirm("Are you sure you want to delete this order?")) return;
+
+        try {
+            await fetch(`https://ecommerence-bay.vercel.app/api/orders/${id}`, {
+                method: "DELETE",
+            });
+
+            // refresh list after delete
+            fetchOrders();
+        } catch (err) {
+            console.error(err);
+            alert(err.message || "Could not delete order");
+        }
+    };
     return (
         <div style={styles.container}>
 
@@ -257,6 +272,7 @@ export default function AdminOrders() {
                             <th style={styles.th}>Total</th>
                             <th style={styles.th}>Status</th>
                             <th style={styles.th}>Delivery Time</th>
+                            <th style={styles.th}>Actions</th>
                         </tr>
                     </thead>
 
@@ -290,15 +306,15 @@ export default function AdminOrders() {
                                         </td>
 
                                         <td style={styles.td}>
-  {o.items?.map((item, index) => (
-    <div key={index}>
-      {item.name} × {item.qty}
-    </div>
-  ))}
-</td>
+                                            {o.items?.map((item, index) => (
+                                                <div key={index}>
+                                                    {item.name} × {item.qty}
+                                                </div>
+                                            ))}
+                                        </td>
 
                                         <td style={styles.td}>
-                                            ${o.totalPrice.toFixed(2)}
+                                            {o.totalPrice.toFixed(2)}
                                         </td>
 
                                         <td style={styles.td}>
@@ -335,6 +351,14 @@ export default function AdminOrders() {
                                                 <option value="1 week">1 week</option>
                                                 <option value="1 month">1 month</option>
                                             </select>
+                                        </td>
+                                        <td style={styles.td}>
+                                            <button
+                                                onClick={() => deleteOrder(o._id)}
+                                                style={styles.deleteBtn}
+                                            >
+                                                Delete
+                                            </button>
                                         </td>
                                     </tr>
                                 ))
@@ -422,4 +446,13 @@ const styles = {
         padding: "15px",
         color: "gray",
     },
+    deleteBtn: {
+        padding: "6px 10px",
+        background: "#ef4444",
+        color: "#fff",
+        border: "none",
+        borderRadius: "6px",
+        cursor: "pointer",
+        fontSize: "13px",
+    }
 };
