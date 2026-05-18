@@ -5,14 +5,14 @@ const makeup = {
     {
       title: "Matte Red Lipstick",
       image:
-        "https://images.unsplash.com/photo-1586495777744-4413f21062fa",
+        "/Homescreen/Sale/lap.jpg",
       price: "$12",
       desc: "Long-lasting matte lipstick with bold red shade.",
     },
     {
       title: "Nude Soft Lipstick",
       image:
-        "https://images.unsplash.com/photo-1596462502278-27bfdc403348",
+        "/Homescreen/Sale/lap.jpg",
       price: "$10",
       desc: "Natural nude shade for everyday look.",
     },
@@ -22,14 +22,14 @@ const makeup = {
     {
       title: "Full Coverage Foundation",
       image:
-        "https://images.unsplash.com/photo-1596704017254-9b121068fb31",
+        "/Homescreen/Sale/fou.webp",
       price: "$18",
       desc: "Smooth full coverage foundation for flawless skin.",
     },
     {
       title: "Light Tone Foundation",
       image:
-        "https://images.unsplash.com/photo-1612810436541-336d8f2a14a1",
+        "/Homescreen/Sale/fou.webp",
       price: "$16",
       desc: "Lightweight foundation for natural glow.",
     },
@@ -39,14 +39,14 @@ const makeup = {
     {
       title: "Luxury Floral Perfume",
       image:
-        "https://images.unsplash.com/photo-1541643600914-78b084683601",
+        "/Homescreen/Sale/perf.jpg",
       price: "$35",
       desc: "Long-lasting floral fragrance perfume.",
     },
     {
       title: "Classic Oud Perfume",
       image:
-        "https://images.unsplash.com/photo-1615634260167-c8cdede054de",
+        "/Homescreen/Sale/perf.jpg",
       price: "$40",
       desc: "Strong oriental oud fragrance for premium feel.",
     },
@@ -56,14 +56,14 @@ const makeup = {
     {
       title: "Black Waterproof Eyeliner",
       image:
-        "https://images.unsplash.com/photo-1620916566398-39f1143ab7be",
+        "/Homescreen/Sale/eye.webp",
       price: "$8",
       desc: "Smudge-proof waterproof eyeliner.",
     },
     {
       title: "Precision Liquid Liner",
       image:
-        "https://images.unsplash.com/photo-1616683693504-3ea7e9d0c8c1",
+        "/Homescreen/Sale/eye.webp",
       price: "$9",
       desc: "Sharp precision liner for perfect wings.",
     },
@@ -73,14 +73,14 @@ const makeup = {
     {
       title: "Vitamin C Serum",
       image:
-        "https://images.unsplash.com/photo-1620916297397-1f3c8c2a1d55",
+        "/Homescreen/Sale/sncare.webp",
       price: "$22",
       desc: "Glow boosting vitamin C serum.",
     },
     {
       title: "Hydrating Face Cream",
       image:
-        "https://images.unsplash.com/photo-1612810806695-30f7f5a0f3d4",
+        "/Homescreen/Sale/sncare.webp",
       price: "$20",
       desc: "Deep hydration cream for soft skin.",
     },

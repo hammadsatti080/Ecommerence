@@ -5,21 +5,21 @@ const data = {
     {
       title: "Soft Kitchen Tissue",
       image:
-        "https://images.unsplash.com/photo-1583947581924-a0b6504a07e3",
+        "/Homescreen/Sale/tssue.webp",
       price: "$2",
       desc: "Ultra soft absorbent kitchen tissue for daily use.",
     },
     {
       title: "Premium Roll Tissue",
       image:
-        "https://images.unsplash.com/photo-1604908554027-7b5c8c9a9f0d",
+        "/Homescreen/Sale/tssue.webp",
       price: "$3",
       desc: "Strong and long lasting paper roll tissue.",
     },
     {
       title: "Eco Tissue Pack",
       image:
-        "https://images.unsplash.com/photo-1615486364462-ef6363a2c3d5",
+        "/Homescreen/Sale/tssue.webp",
       price: "$2.5",
       desc: "Eco friendly biodegradable tissue pack.",
     },
@@ -29,14 +29,14 @@ const data = {
     {
       title: "Power Clean Detergent",
       image:
-        "https://images.unsplash.com/photo-1585421514738-01798e348b17",
+        "/Homescreen/Sale/deter.webp",
       price: "$5",
       desc: "Strong stain removing liquid detergent.",
     },
     {
       title: "Laundry Powder",
       image:
-        "https://images.unsplash.com/photo-1583947215259-38e31be8751f",
+        "/Homescreen/Sale/deter.webp",
       price: "$4",
       desc: "Deep cleaning powder for clothes.",
     },
@@ -46,14 +46,14 @@ const data = {
     {
       title: "Floor Cleaner",
       image:
-        "https://images.unsplash.com/photo-1585421514284-efb74c2b4a8f",
+        "/Homescreen/Sale/clean.jpg",
       price: "$6",
       desc: "Kills 99% germs and cleans floors deeply.",
     },
     {
       title: "Glass Cleaner",
       image:
-        "https://images.unsplash.com/photo-1583947581924-a0b6504a07e3",
+        "/Homescreen/Sale/clean.jpg",
       price: "$3",
       desc: "Crystal clear shine for glass surfaces.",
     },
@@ -63,14 +63,14 @@ const data = {
     {
       title: "Rice Pack",
       image:
-        "https://images.unsplash.com/photo-1600628422019-4a8c6b5b5f6a",
+        "/Homescreen/Sale/groc.jpg",
       price: "$10",
       desc: "Premium basmati rice 5kg pack.",
     },
     {
       title: "Cooking Oil",
       image:
-        "https://images.unsplash.com/photo-1622483767028-3f66f32a7a4c",
+        "/Homescreen/Sale/groc.jpg",
       price: "$8",
       desc: "Pure cooking oil for daily meals.",
     },

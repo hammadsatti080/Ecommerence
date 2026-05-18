@@ -253,6 +253,7 @@ export default function AdminOrders() {
                         <tr>
                             <th style={styles.th}>User</th>
                             <th style={styles.th}>Email</th>
+                            <th style={styles.th}>Prod name</th>
                             <th style={styles.th}>Total</th>
                             <th style={styles.th}>Status</th>
                             <th style={styles.th}>Delivery Time</th>
@@ -287,6 +288,14 @@ export default function AdminOrders() {
                                         <td style={styles.td}>
                                             {o.user?.email || "N/A"}
                                         </td>
+
+                                        <td style={styles.td}>
+  {o.items?.map((item, index) => (
+    <div key={index}>
+      {item.name} × {item.qty}
+    </div>
+  ))}
+</td>
 
                                         <td style={styles.td}>
                                             ${o.totalPrice.toFixed(2)}
