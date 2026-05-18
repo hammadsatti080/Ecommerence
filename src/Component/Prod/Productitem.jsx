@@ -1,6 +1,3 @@
-/*
-Backup data are in Backupproduct.jsx file
-*/
 import React, { useEffect, useState } from "react";
 
 export default function Productitem() {
@@ -48,7 +45,7 @@ export default function Productitem() {
     const data = await res.json();
     const filtered = data.filter(
       (c) =>
-        (c.name || "").toLowerCase() !== "future product" // catgory name agar ni equal ho (future prod) then show kro
+        (c.name || "").toLowerCase() !== "future product"
     );
 
     setCategories(filtered);
@@ -59,7 +56,7 @@ export default function Productitem() {
     return (p - (p * d) / 100).toFixed(2);
   };
 
-  // ================= CART =================
+
   const addToCart = (product) => {
     if (product.stock <= 0) return alert("Out of stock!");
 
@@ -123,7 +120,6 @@ export default function Productitem() {
       ? categories
       : categories.filter((c) => c.name === activeCategory);
 
-  // ================= PAYMENT FLOW =================
 
   const handleUserChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
@@ -133,7 +129,7 @@ export default function Productitem() {
 
   const handleFinalPayment = async () => {
     try {
-      // Step 1: Verify email is registered
+
       const resCheck = await fetch("https://ecommerence-backend-jade.vercel.app/api/auth/check-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -145,7 +141,7 @@ export default function Productitem() {
         return;
       }
 
-      // Step 2: Send order to backend
+
       const resOrder = await fetch("https://ecommerence-backend-jade.vercel.app/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -170,13 +166,13 @@ export default function Productitem() {
 
 
 
-  //saved
+
   const handleSave = async (product) => {
     const email = prompt("Enter your email to save product:");
 
     if (!email) return;
 
-    // 1. AUTH CHECK
+
     const res = await fetch(
       "https://ecommerence-backend-jade.vercel.app/api/auth/check-email",
       {
@@ -193,7 +189,6 @@ export default function Productitem() {
       return;
     }
 
-    // 2. SAVE TO BACKEND
     await fetch("https://ecommerence-backend-jade.vercel.app/api/saved/save", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -208,7 +203,7 @@ export default function Productitem() {
   return (
     <div className="app">
 
-      {/* ================= STYLES ================= */}
+
       <style>{`
         * {
           box-sizing: border-box;
@@ -221,7 +216,7 @@ export default function Productitem() {
           padding: 15px;
         }
 
-        /* TOP BAR RESPONSIVE */
+   
         .top-bar {
           display: flex;
           gap: 10px;
@@ -245,7 +240,7 @@ export default function Productitem() {
           border: none;
         }
 
-        /* PRODUCT GRID RESPONSIVE */
+        
         .card-grid {
           display: flex;
           gap: 12px;
@@ -280,91 +275,221 @@ export default function Productitem() {
           border-radius: 8px;
         }
 
-        /* MODAL RESPONSIVE */
-        .modal-overlay {
-          position: fixed;
-          inset: 0;
-          background: rgba(0,0,0,0.5);
-          display: flex;
-          align-items: flex-end;
-          justify-content: center;
-        }
+       
+.cart-sheet {
+  width: 100%;
+  max-width: 520px;
+  background: white;
+  border-radius: 18px 18px 0 0;
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+  animation: slideUp 0.25s ease;
+}
 
-        .modal-box {
-          width: 100%;
-          max-width: 500px;
-          background: white;
-          border-radius: 16px 16px 0 0;
-          padding: 15px;
-        }
+/* Header */
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee;
+}
 
-        /* CART ITEM */
-        .cart-item {
-          display: flex;
-          justify-content: space-between;
-          padding: 8px 0;
-          border-bottom: 1px solid #eee;
-        }
+.close-x {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
 
-        .qty-btn {
-          padding: 4px 10px;
-          border: none;
-          border-radius: 6px;
-          background: #ddd;
-        }
+/* Scrollable body */
+.cart-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 14px;
+}
 
-        .del-btn {
-          background: red;
-          color: white;
-          border: none;
-          padding: 5px 8px;
-          border-radius: 6px;
-        }
+/* Empty state */
+.empty-cart {
+  text-align: center;
+  color: #888;
+  margin-top: 30px;
+}
 
-        .modal-actions {
-          display: flex;
-          gap: 10px;
-          margin-top: 12px;
-        }
+/* Cart item */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  background: #f9f9f9;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
 
-        .pay-btn {
-          flex: 1;
-          background: blue;
-          color: white;
-          border: none;
-          padding: 10px;
-          border-radius: 8px;
-        }
+.cart-left h4 {
+  margin: 0;
+  font-size: 14px;
+}
 
-        .close-btn {
-          flex: 1;
-          background: #eee;
-          border: none;
-          padding: 10px;
-          border-radius: 8px;
-        }
+.price {
+  color: #16a34a;
+  font-weight: bold;
+  margin: 4px 0;
+}
 
-        /* ============ MOBILE RESPONSIVE ============ */
-        @media (max-width: 600px) {
-          .product-card {
-            min-width: 140px;
-          }
+/* Qty buttons */
+.qty-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
 
-          .search-input, .category-dropdown {
-            font-size: 14px;
-          }
+.qty-box button {
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 6px;
+  background: #ddd;
+  cursor: pointer;
+}
 
-          .modal-box {
-            padding: 12px;
-          }
+/* Remove button */
+.remove-btn {
+  background: red;
+  color: white;
+  border: none;
+  height: 28px;
+  width: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
-          h2 {
-            font-size: 16px;
-          }
+/* Footer sticky */
+.cart-footer {
+  border-top: 1px solid #eee;
+  padding: 12px 14px;
+  background: white;
+}
+
+.total {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.cart-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* animation */
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+       .checkout-box {
+  width: 100%;
+  max-width: 500px;
+  background: white;
+  border-radius: 18px 18px 0 0;
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+  animation: slideUp 0.25s ease;
+}
+
+/* Header */
+.checkout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Body scroll */
+.checkout-body {
+  padding: 14px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Input groups */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.input-group label {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.input-group input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+.input-group input:focus {
+  border-color: #16a34a;
+}
+
+/* Footer sticky */
+.checkout-footer {
+  border-top: 1px solid #eee;
+  padding: 12px;
+  display: flex;
+  gap: 10px;
+  background: white;
+}
+
+/* Buttons */
+.pay-btn {
+  flex: 1;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.close-btn {
+  flex: 1;
+  background: #eee;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Animation reuse */
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
         }
       `}</style>
 
-      {/* ================= TOP BAR ================= */}
       <div className="top-bar">
         <input
           className="search-input"
@@ -389,7 +514,6 @@ export default function Productitem() {
         </button>
       </div>
 
-      {/* ================= PRODUCTS ================= */}
       {visibleCategories.map((cat) => {
         const filtered = products.filter(
           (p) =>
@@ -420,7 +544,7 @@ export default function Productitem() {
                         {getFinalPrice(p.price, p.discount)} (-{p.discount}%)
                       </p>
                     )}
-                    {/* STOCK */}
+
                     <p style={{ color: p.stock ? "green" : "red" }}>
                       Stock: {p.stock}
                     </p>
@@ -445,61 +569,136 @@ export default function Productitem() {
         );
       })}
 
-      {/* ================= CART ================= */}
       {showCart && (
         <div className="modal-overlay">
-          <div className="modal-box">
+          <div className="cart-sheet">
 
-            <h2>Cart</h2>
+            {/* Header */}
+            <div className="cart-header">
+              <h2>🛒 Your Cart</h2>
+              <button className="close-x" onClick={() => setShowCart(false)}>✕</button>
+            </div>
 
-            {cart.map((item) => (
-              <div key={item._id} className="cart-item">
-                <div>
-                  <b>{item.name}</b>
-                  <p>Qty: {item.qty} / {item.stock}</p>
+            {/* Items (Scrollable) */}
+            <div className="cart-body">
+              {cart.length === 0 ? (
+                <p className="empty-cart">Your cart is empty</p>
+              ) : (
+                cart.map((item) => (
+                  <div key={item._id} className="cart-item">
 
-                  <button className="qty-btn" onClick={() => decreaseQty(item)}>-</button>
-                  <span style={{ margin: "0 10px" }}>{item.qty}</span>
-                  <button className="qty-btn" onClick={() => increaseQty(item)}>+</button>
-                </div>
+                    <div className="cart-left">
+                      <h4>{item.name}</h4>
+                      <p className="price">
+                        Rs {(item.price - (item.price * (item.discount || 0)) / 100).toFixed(2)}
+                      </p>
 
-                <button className="del-btn" onClick={() => removeFromCart(item._id)}>
-                  ✕
+                      <div className="qty-box">
+                        <button onClick={() => decreaseQty(item)}>-</button>
+                        <span>{item.qty}</span>
+                        <button onClick={() => increaseQty(item)}>+</button>
+                      </div>
+                    </div>
+
+                    <button
+                      className="remove-btn"
+                      onClick={() => removeFromCart(item._id)}
+                    >
+                      ✕
+                    </button>
+
+                  </div>
+                ))
+              )}
+            </div>
+
+            {/* Footer (Sticky) */}
+            <div className="cart-footer">
+              <div className="total">
+                Total: <b>Rs {grandTotal}</b>
+              </div>
+
+              <div className="cart-actions">
+                <button className="pay-btn" onClick={() => setShowUserForm(true)}>
+                  Checkout
+                </button>
+                <button className="close-btn" onClick={() => setShowCart(false)}>
+                  Continue Shopping
                 </button>
               </div>
-            ))}
-
-            <h3>Total: {grandTotal}</h3>
-
-            <div className="modal-actions">
-              <button className="pay-btn" onClick={() => setShowUserForm(true)}>Pay</button>
-              <button className="close-btn" onClick={() => setShowCart(false)}>Close</button>
             </div>
 
           </div>
         </div>
       )}
 
-
-      {/* ================= USER FORM ================= */}
       {showUserForm && (
         <div className="modal-overlay">
-          <div className="modal-box">
+          <div className="checkout-box">
 
-            <h2>User Info</h2>
-            <div className="modal-actions">
-              <input name="name" placeholder="Name" className="search-input" onChange={handleUserChange} />
-              <input name="email" placeholder="Email" className="search-input" onChange={handleUserChange} />
+            {/* Header */}
+            <div className="checkout-header">
+              <h2>🧾 Checkout</h2>
+              <button
+                className="close-x"
+                onClick={() => setShowUserForm(false)}
+              >
+                ✕
+              </button>
             </div>
-            <div className="modal-actions">
-              <input name="address" placeholder="Address" className="search-input" onChange={handleUserChange} />
-              <input name="phone" placeholder="Phone" className="search-input" onChange={handleUserChange} />
+
+            {/* Form */}
+            <div className="checkout-body">
+
+              <div className="input-group">
+                <label>Name</label>
+                <input
+                  name="name"
+                  placeholder="Enter your full name"
+                  onChange={handleUserChange}
+                />
+              </div>
+
+              <div className="input-group">
+                <label>Email</label>
+                <input
+                  name="email"
+                  placeholder="Enter your email"
+                  onChange={handleUserChange}
+                />
+              </div>
+
+              <div className="input-group">
+                <label>Address</label>
+                <input
+                  name="address"
+                  placeholder="Enter your address"
+                  onChange={handleUserChange}
+                />
+              </div>
+
+              <div className="input-group">
+                <label>Phone</label>
+                <input
+                  name="phone"
+                  placeholder="03XX-XXXXXXX"
+                  onChange={handleUserChange}
+                />
+              </div>
+
             </div>
-            <div className="modal-actions">
+
+            {/* Footer */}
+            <div className="checkout-footer">
               <button className="pay-btn" onClick={handleFinalPayment}>
                 Pay Now
               </button>
-              <button className="close-btn" onClick={() => setShowUserForm(false)}>Cancel</button>
+              <button
+                className="close-btn"
+                onClick={() => setShowUserForm(false)}
+              >
+                Cancel
+              </button>
             </div>
 
           </div>

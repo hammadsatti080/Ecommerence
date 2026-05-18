@@ -5,6 +5,9 @@ Backup data are in Backupproduct.jsx file
 
 /*
 
+/*
+Backup data are in Backupproduct.jsx file
+
 import React, { useEffect, useState } from "react";
 
 export default function Productitem() {
@@ -16,9 +19,7 @@ export default function Productitem() {
   const [showCart, setShowCart] = useState(false);
   const [cart, setCart] = useState([]);
 
-  const [showOtpModal, setShowOtpModal] = useState(false);
-  const [otp, setOtp] = useState("");
-  const [generatedOtp, setGeneratedOtp] = useState("");
+
 
   const [showUserForm, setShowUserForm] = useState(false);
 
@@ -29,8 +30,8 @@ export default function Productitem() {
     phone: ""
   });
 
-  const API = "http://localhost:5000/api/products";
-  const CAT_API = "http://localhost:5000/api/categories";
+  const API = "https://ecommerence-backend-jade.vercel.app/api/products";
+  const CAT_API = "https://ecommerence-backend-jade.vercel.app/api/categories";
 
   useEffect(() => {
     fetchProducts();
@@ -40,21 +41,32 @@ export default function Productitem() {
   const fetchProducts = async () => {
     const res = await fetch(API);
     const data = await res.json();
-    setProducts(data);
+
+    const filtered = data.filter(
+      (p) =>
+        (p.category || "").toLowerCase() !== "future product"
+    );
+
+    setProducts(filtered);
   };
 
   const fetchCategories = async () => {
     const res = await fetch(CAT_API);
     const data = await res.json();
-    setCategories(data);
-  };
+    const filtered = data.filter(
+      (c) =>
+        (c.name || "").toLowerCase() !== "future product" 
+    );
 
+    setCategories(filtered);
+  };
   const getFinalPrice = (price, discount) => {
     const p = Number(price);
     const d = Number(discount || 0);
     return (p - (p * d) / 100).toFixed(2);
   };
 
+ 
   const addToCart = (product) => {
     if (product.stock <= 0) return alert("Out of stock!");
 
@@ -118,65 +130,90 @@ export default function Productitem() {
       ? categories
       : categories.filter((c) => c.name === activeCategory);
 
- 
-  const openOtpModal = () => {
-    const code = Math.floor(100000 + Math.random() * 900000).toString();
-    setGeneratedOtp(code);
-    alert("OTP: " + code);
-    setShowOtpModal(true);
-  };
-
-  const verifyOtp = () => {
-    if (otp === generatedOtp) {
-      setShowOtpModal(false);
-      setShowUserForm(true);
-    } else alert("Invalid OTP");
-  };
 
   const handleUserChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
   };
 
-const handleFinalPayment = async () => {
-  try {
+
+
+  const handleFinalPayment = async () => {
+    try {
   
-    const resCheck = await fetch("http://localhost:5000/api/auth/check-email", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: userInfo.email }),
-    });
-    const dataCheck = await resCheck.json();
-    if (!dataCheck.exists) {
-      alert("Email not registered! Please sign up first.");
+      const resCheck = await fetch("https://ecommerence-backend-jade.vercel.app/api/auth/check-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: userInfo.email }),
+      });
+      const dataCheck = await resCheck.json();
+      if (!dataCheck.exists) {
+        alert("Email not registered! Please sign up first.");
+        return;
+      }
+
+    
+      const resOrder = await fetch("https://ecommerence-backend-jade.vercel.app/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user: userInfo, cart }),
+      });
+
+      const dataOrder = await resOrder.json();
+      if (!resOrder.ok) {
+        alert(dataOrder.message || "Failed to create order");
+        return;
+      }
+
+      alert("Payment Successful! Order placed.");
+      setCart([]);
+      setShowUserForm(false);
+      setShowCart(false);
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong, try again!");
+    }
+  };
+
+
+
+  
+  const handleSave = async (product) => {
+    const email = prompt("Enter your email to save product:");
+
+    if (!email) return;
+
+    
+    const res = await fetch(
+      "https://ecommerence-backend-jade.vercel.app/api/auth/check-email",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      }
+    );
+
+    const data = await res.json();
+
+    if (!data.exists) {
+      alert("User not registered!");
       return;
     }
 
-    const resOrder = await fetch("http://localhost:5000/api/orders", {
+    await fetch("https://ecommerence-backend-jade.vercel.app/api/saved/save", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user: userInfo, cart }),
+      body: JSON.stringify({
+        userEmail: email,
+        product,
+      }),
     });
 
-    const dataOrder = await resOrder.json();
-    if (!resOrder.ok) {
-      alert(dataOrder.message || "Failed to create order");
-      return;
-    }
-
-    alert("Payment Successful! Order placed.");
-    setCart([]);
-    setShowUserForm(false);
-    setShowCart(false);
-  } catch (err) {
-    console.error(err);
-    alert("Something went wrong, try again!");
-  }
-};
-
+    alert("Saved successfully ❤️");
+  };
   return (
     <div className="app">
 
-    
+
       <style>{`
         * {
           box-sizing: border-box;
@@ -189,7 +226,7 @@ const handleFinalPayment = async () => {
           padding: 15px;
         }
 
-       
+   
         .top-bar {
           display: flex;
           gap: 10px;
@@ -213,7 +250,7 @@ const handleFinalPayment = async () => {
           border: none;
         }
 
-   
+        
         .card-grid {
           display: flex;
           gap: 12px;
@@ -248,6 +285,7 @@ const handleFinalPayment = async () => {
           border-radius: 8px;
         }
 
+       
         .modal-overlay {
           position: fixed;
           inset: 0;
@@ -265,7 +303,6 @@ const handleFinalPayment = async () => {
           padding: 15px;
         }
 
-       
         .cart-item {
           display: flex;
           justify-content: space-between;
@@ -311,7 +348,7 @@ const handleFinalPayment = async () => {
           border-radius: 8px;
         }
 
-     
+
         @media (max-width: 600px) {
           .product-card {
             min-width: 140px;
@@ -355,7 +392,6 @@ const handleFinalPayment = async () => {
         </button>
       </div>
 
-
       {visibleCategories.map((cat) => {
         const filtered = products.filter(
           (p) =>
@@ -378,19 +414,24 @@ const handleFinalPayment = async () => {
                     <h4>{p.name}</h4>
 
                     <p style={{ textDecoration: p.discount ? "line-through" : "none", color: "#888" }}>
-                      ${p.price}
+                      {p.price}
                     </p>
 
                     {p.discount > 0 && (
                       <p style={{ color: "#16a34a", fontWeight: "bold" }}>
-                        ${getFinalPrice(p.price, p.discount)} (-{p.discount}%)
+                        {getFinalPrice(p.price, p.discount)} (-{p.discount}%)
                       </p>
                     )}
-                    
+                
                     <p style={{ color: p.stock ? "green" : "red" }}>
                       Stock: {p.stock}
                     </p>
-
+                    <button
+                      onClick={() => handleSave(p)}
+                      style={{ background: "transparent", border: "none", cursor: "pointer" }}
+                    >
+                      🤍 Save
+                    </button>
                     <button
                       className="add-cart-btn"
                       onClick={() => addToCart(p)}
@@ -406,7 +447,6 @@ const handleFinalPayment = async () => {
         );
       })}
 
-     
       {showCart && (
         <div className="modal-overlay">
           <div className="modal-box">
@@ -430,10 +470,10 @@ const handleFinalPayment = async () => {
               </div>
             ))}
 
-            <h3>Total: ${grandTotal}</h3>
+            <h3>Total: {grandTotal}</h3>
 
             <div className="modal-actions">
-              <button className="pay-btn" onClick={openOtpModal}>Pay</button>
+              <button className="pay-btn" onClick={() => setShowUserForm(true)}>Pay</button>
               <button className="close-btn" onClick={() => setShowCart(false)}>Close</button>
             </div>
 
@@ -442,38 +482,20 @@ const handleFinalPayment = async () => {
       )}
 
 
-      {showOtpModal && (
-        <div className="modal-overlay">
-          <div className="modal-box">
-
-            <h2>OTP</h2>
-            <input
-              className="search-input"
-              value={otp}
-              onChange={(e) => setOtp(e.target.value)}
-            />
-
-            <div className="modal-actions">
-              <button className="pay-btn" onClick={verifyOtp}>Verify</button>
-              <button className="close-btn" onClick={() => setShowOtpModal(false)}>Cancel</button>
-            </div>
-
-          </div>
-        </div>
-      )}
-
   
       {showUserForm && (
         <div className="modal-overlay">
           <div className="modal-box">
 
             <h2>User Info</h2>
-
-            <input name="name" placeholder="Name" className="search-input" onChange={handleUserChange} />
-            <input name="email" placeholder="Email" className="search-input" onChange={handleUserChange} />
-            <input name="address" placeholder="Address" className="search-input" onChange={handleUserChange} />
-            <input name="phone" placeholder="Phone" className="search-input" onChange={handleUserChange} />
-
+            <div className="modal-actions">
+              <input name="name" placeholder="Name" className="search-input" onChange={handleUserChange} />
+              <input name="email" placeholder="Email" className="search-input" onChange={handleUserChange} />
+            </div>
+            <div className="modal-actions">
+              <input name="address" placeholder="Address" className="search-input" onChange={handleUserChange} />
+              <input name="phone" placeholder="Phone" className="search-input" onChange={handleUserChange} />
+            </div>
             <div className="modal-actions">
               <button className="pay-btn" onClick={handleFinalPayment}>
                 Pay Now

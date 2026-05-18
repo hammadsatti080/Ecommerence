@@ -305,7 +305,7 @@ export default function AdminOrders() {
                                             >
                                                 <option value="pending">Pending</option>
                                                 <option value="completed">Completed</option>
-                                                  <option value="delivered">Delivered</option>
+                                                <option value="delivered">Delivered</option>
                                                 <option value="cancelled">Cancelled</option>
                                             </select>
                                         </td>

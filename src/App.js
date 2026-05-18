@@ -21,6 +21,13 @@ import Maincollection from './Pages/Maincollection';
 import SavedProduct from './Component/Prod/Savedproduct';
 import UserProfile from './Component/Dashboard/UserProfilee/UserProfile';
 import TermsConditions from './Public folder/TermsConditions';
+import Sale from './Pages/Sale';
+import Clothsale from './Component/Sale/Subsale/Clothsale';
+import Watchessale from './Component/Sale/Subsale/Watchessale';
+import Slyper from './Component/Sale/Subsale/Slyper';
+import Kitchen from './Component/Sale/Subsale/Kitchen';
+import Makeup from './Component/Sale/Subsale/Makeup';
+
 
 
 function App() {
@@ -50,6 +57,12 @@ function App() {
           <Route path="/save" element={<SavedProduct />} />
           <Route path="/userprof" element={<UserProfile />} />
           <Route path="/terms" element={<TermsConditions />} />
+          <Route path="/sale" element={<Sale />} />
+          <Route path="/product/sale1" element={<Clothsale />} />
+          <Route path="/product/sale2" element={<Watchessale />} />
+          <Route path="/product/sale3" element={<Slyper />} />
+          <Route path="/product/sale4" element={<Kitchen />} />
+          <Route path="/product/sale5" element={<Makeup />} />
         </Routes>
         <Footer />
       </div>
