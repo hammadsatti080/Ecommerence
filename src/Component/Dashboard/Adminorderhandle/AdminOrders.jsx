@@ -158,8 +158,8 @@ export default function AdminOrders() {
         setError("");
         try {
             const url = filterStatus
-                ? `https://ecommerence-bay.vercel.app/api/orders?status=${filterStatus}`
-                : "https://ecommerence-bay.vercel.app/api/orders";
+                ? `https://ecommerence-backend-jade.vercel.app/api/orders?status=${filterStatus}`
+                : "https://ecommerence-backend-jade.vercel.app/api/orders";
 
             const res = await fetch(url);
             if (!res.ok) throw new Error("Failed to fetch orders");
@@ -180,7 +180,7 @@ export default function AdminOrders() {
 
     const changeStatus = async (id, status) => {
         try {
-            await fetch(`https://ecommerence-bay.vercel.app/api/orders/${id}`, {
+            await fetch(`https://ecommerence-backend-jade.vercel.app/api/orders/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ status }),
@@ -194,7 +194,7 @@ export default function AdminOrders() {
 
     const changeDeliveryTime = async (id, deliveryTime) => {
         try {
-            await fetch(`https://ecommerence-bay.vercel.app/api/orders/${id}`, {
+            await fetch(`https://ecommerence-backend-jade.vercel.app/api/orders/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ deliveryTime }),
@@ -210,7 +210,7 @@ export default function AdminOrders() {
         if (!window.confirm("Are you sure you want to delete this order?")) return;
 
         try {
-            await fetch(`https://ecommerence-bay.vercel.app/api/orders/${id}`, {
+            await fetch(`https://ecommerence-backend-jade.vercel.app/api/orders/${id}`, {
                 method: "DELETE",
             });
 

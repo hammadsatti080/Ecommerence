@@ -90,7 +90,7 @@ export default function KitchenStore() {
         setLoading(true);
         try {
             // 1️⃣ Verify email
-            const checkRes = await fetch("https://ecommerence-bay.vercel.app/api/auth/check-email", {
+            const checkRes = await fetch("https://ecommerence-backend-jade.vercel.app/api/auth/check-email", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email: form.email.trim() }),
@@ -104,7 +104,7 @@ export default function KitchenStore() {
             }
 
             // 2️⃣ Place order
-            const orderRes = await fetch("https://ecommerence-bay.vercel.app/api/orders", {
+            const orderRes = await fetch("https://ecommerence-backend-jade.vercel.app/api/orders", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
