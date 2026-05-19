@@ -1,13 +1,13 @@
 import React from "react";
 
 const categories = [
-    { id: 1, name: "Screen Protectors", icon: "📱", link: "#", bg: "#FFF3E0", iconBg: "#FF6F00" },
-    { id: 2, name: "Hoodies & Sweatshirts", icon: "👕", link: "#", bg: "#E8F5E9", iconBg: "#2E7D32" },
-    { id: 3, name: "Microphones", icon: "🎙️", link: "#", bg: "#E3F2FD", iconBg: "#1565C0" },
+    { id: 1, name: "Screen Protectors", icon: "📱", link: "screen", bg: "#FFF3E0", iconBg: "#FF6F00" },
+    { id: 2, name: "Hoodies & Sweatshirts", icon: "👕", link: "hoddies", bg: "#E8F5E9", iconBg: "#2E7D32" },
+    { id: 3, name: "Microphones", icon: "🎙️", link: "microphones", bg: "#E3F2FD", iconBg: "#1565C0" },
     { id: 4, name: "3D Printers", icon: "🖨️", link: "#", bg: "#F3E5F5", iconBg: "#6A1B9A" },
     { id: 5, name: "Scooters", icon: "🛴", link: "#", bg: "#FCE4EC", iconBg: "#C62828" },
     { id: 6, name: "Dining Sets", icon: "🍽️", link: "#", bg: "#FFFDE7", iconBg: "#F57F17" },
-    { id: 7, name: "Casserole Pots", icon: "🍲", link: "#", bg: "#E0F7FA", iconBg: "#00695C" },
+    { id: 7, name: "Mobile", icon: "🍲", link: "mob", bg: "#E0F7FA", iconBg: "#00695C" },
     { id: 8, name: "Toy Boxes", icon: "🧸", link: "#", bg: "#FFF8E1", iconBg: "#E65100" },
 ];
 

@@ -25,7 +25,7 @@ export default function Header() {
   const categories = [
     { label: "Add Category", path: "/catagory" },
     { label: "Expense Record", path: "/expenserecord" },
-    { label: "View List", path: "/view-list" },
+    { label: "Product catagory", path: "/productpage" },
   ];
 
   /* ================= DROPDOWN NAVIGATION ================= */

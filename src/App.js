@@ -27,6 +27,11 @@ import Watchessale from './Component/Sale/Subsale/Watchessale';
 import Slyper from './Component/Sale/Subsale/Slyper';
 import Kitchen from './Component/Sale/Subsale/Kitchen';
 import Makeup from './Component/Sale/Subsale/Makeup';
+import Hoddies from './Component/Sale/Catagory/Hoddies';
+import Screenprotector from './Component/Sale/Catagory/Screenprotector';
+import Microphones from './Component/Sale/Catagory/Microphones';
+import Productpage from './Component/Sale/AdminProductadd/Productpage';
+import MobileCategory from './Component/Sale/Catagory/MobileCategory';
 
 
 
@@ -63,6 +68,11 @@ function App() {
           <Route path="/product/sale3" element={<Slyper />} />
           <Route path="/product/sale4" element={<Kitchen />} />
           <Route path="/product/sale5" element={<Makeup />} />
+          <Route path="/hoddies" element={<Hoddies />} />
+          <Route path="/screen" element={<Screenprotector />} />
+          <Route path="/microphones" element={<Microphones />} />
+          <Route path="/productpage" element={<Productpage />} />
+           <Route path="/mob" element={<MobileCategory />} />
         </Routes>
         <Footer />
       </div>
