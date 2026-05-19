@@ -496,7 +496,7 @@ export default function ProductsPage() {
     };
 
     const fetchProducts = async () => {
-        const res = await fetch("http://localhost:5000/api/Saleprod");
+        const res = await fetch("https://ecommerence-backend-jade.vercel.app/api/Saleprod");
         const data = await res.json();
         setProducts(data);
     };
