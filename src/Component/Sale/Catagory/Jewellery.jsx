@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-const brands = ["All"];
-
-export default function MobileCategory() {
-    const [mobiles, setMobiles] = useState([]);
+export default function Jewellery() {
+    const [jewellery, setJewellery] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
+    const [brands, setBrands] = useState(["All"]);
     const [selectedBrand, setSelectedBrand] = useState("All");
 
     const [cart, setCart] = useState([]);
@@ -27,30 +26,36 @@ export default function MobileCategory() {
 
     // ───────── FETCH PRODUCTS ─────────
     useEffect(() => {
-        const fetchMobiles = async () => {
+        const fetchJewellery = async () => {
             try {
                 setLoading(true);
                 const res = await fetch("http://localhost:5000/api/Saleprod");
                 if (!res.ok) throw new Error("Failed to fetch products");
                 const data = await res.json();
                 const filtered = data.filter(
-                    (item) => item.category?.toLowerCase() === "mobile"
+                    (item) => item.category?.toLowerCase() === "jewellery"
                 );
-                setMobiles(filtered);
+                setJewellery(filtered);
+
+                const uniqueBrands = [
+                    "All",
+                    ...new Set(filtered.map((p) => p.brand).filter(Boolean)),
+                ];
+                setBrands(uniqueBrands);
             } catch (err) {
                 setError(err.message);
             } finally {
                 setLoading(false);
             }
         };
-        fetchMobiles();
+        fetchJewellery();
     }, []);
 
     // ───────── FILTERED PRODUCTS ─────────
-    const filteredMobiles =
+    const filteredJewellery =
         selectedBrand === "All"
-            ? mobiles
-            : mobiles.filter((item) => item.brand === selectedBrand);
+            ? jewellery
+            : jewellery.filter((item) => item.brand === selectedBrand);
 
     // ───────── CART LOGIC ─────────
     const addToCart = (item) => {
@@ -186,10 +191,10 @@ export default function MobileCategory() {
                             fontWeight: "500",
                         }}
                     >
-                        Mobile Phones
+                        Jewellery Collection
                     </h1>
                     <p style={{ color: "#666", fontSize: "14px" }}>
-                        Top-rated smartphones for every budget and lifestyle.
+                        Elegant jewellery for every occasion.
                     </p>
                 </div>
 
@@ -272,7 +277,7 @@ export default function MobileCategory() {
                     gap: "18px",
                 }}
             >
-                {filteredMobiles.map((m) => (
+                {filteredJewellery.map((m) => (
                     <div
                         key={m._id}
                         style={{
@@ -310,7 +315,7 @@ export default function MobileCategory() {
                                     marginBottom: "10px",
                                 }}
                             >
-                                {m.description || "Premium mobile device"}
+                                {m.description || "Premium jewellery piece"}
                             </p>
 
                             {m.brand && (
@@ -335,7 +340,7 @@ export default function MobileCategory() {
                                 }}
                             >
                                 <strong style={{ color: "#c9a96e", fontSize: "17px" }}>
-                                    ${m.price}
+                                    {m.price}
                                 </strong>
                                 <button
                                     onClick={() => addToCart(m)}
@@ -349,7 +354,7 @@ export default function MobileCategory() {
                                         fontSize: "10px",
                                         fontWeight: "400",
                                         fontFamily: "Segoe UI",
-                                        width:"60px"
+                                         width:"60px"
                                     }}
                                 >
                                     + Add to Cart
@@ -440,7 +445,7 @@ export default function MobileCategory() {
                                                         {i.name}
                                                     </p>
                                                     <p style={{ fontSize: "12px", color: "#777" }}>
-                                                        ${i.price}
+                                                        {i.price}
                                                     </p>
                                                 </div>
                                                 <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
@@ -459,7 +464,7 @@ export default function MobileCategory() {
 
                                         <div style={{ display: "flex", justifyContent: "space-between", marginTop: "18px", fontWeight: "700", fontSize: "17px" }}>
                                             <span>Total</span>
-                                            <span>${cartTotal.toFixed(2)}</span>
+                                            <span>{cartTotal.toFixed(2)}</span>
                                         </div>
 
                                         <button onClick={goToForm} style={primaryBtn}>
@@ -515,7 +520,7 @@ export default function MobileCategory() {
                                 <div style={{ fontSize: "60px", marginBottom: "12px" }}>🎉</div>
                                 <h2 style={{ color: "#27ae60", fontWeight: "500" }}>Order Placed!</h2>
                                 <p style={{ color: "#666", marginTop: "10px" }}>
-                                    Your mobile order has been placed successfully.
+                                    Your jewellery order has been placed successfully.
                                 </p>
                                 <button onClick={closeModal} style={{ ...primaryBtn, background: "#27ae60" }}>
                                     Continue Shopping

@@ -32,6 +32,7 @@ import Screenprotector from './Component/Sale/Catagory/Screenprotector';
 import Microphones from './Component/Sale/Catagory/Microphones';
 import Productpage from './Component/Sale/AdminProductadd/Productpage';
 import MobileCategory from './Component/Sale/Catagory/MobileCategory';
+import Jewellery from './Component/Sale/Catagory/Jewellery';
 
 
 
@@ -73,6 +74,7 @@ function App() {
           <Route path="/microphones" element={<Microphones />} />
           <Route path="/productpage" element={<Productpage />} />
            <Route path="/mob" element={<MobileCategory />} />
+              <Route path="/jew" element={<Jewellery />} />
         </Routes>
         <Footer />
       </div>
