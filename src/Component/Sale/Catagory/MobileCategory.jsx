@@ -30,7 +30,7 @@ export default function MobileCategory() {
         const fetchMobiles = async () => {
             try {
                 setLoading(true);
-                const res = await fetch("http://localhost:5000/api/Saleprod");
+                const res = await fetch("https://ecommerence-backend-jade.vercel.app/api/Saleprod");
                 if (!res.ok) throw new Error("Failed to fetch products");
                 const data = await res.json();
                 const filtered = data.filter(
@@ -100,7 +100,7 @@ export default function MobileCategory() {
 
         try {
             const check = await fetch(
-                "http://localhost:5000/api/auth/check-email",
+                "https://ecommerence-backend-jade.vercel.app/api/auth/check-email",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -116,7 +116,7 @@ export default function MobileCategory() {
             }
 
             const order = await fetch(
-                "http://localhost:5000/api/orders",
+                "https://ecommerence-backend-jade.vercel.app/api/orders",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -335,7 +335,7 @@ export default function MobileCategory() {
                                 }}
                             >
                                 <strong style={{ color: "#c9a96e", fontSize: "17px" }}>
-                                    ${m.price}
+                                    {m.price}
                                 </strong>
                                 <button
                                     onClick={() => addToCart(m)}
@@ -440,7 +440,7 @@ export default function MobileCategory() {
                                                         {i.name}
                                                     </p>
                                                     <p style={{ fontSize: "12px", color: "#777" }}>
-                                                        ${i.price}
+                                                        {i.price}
                                                     </p>
                                                 </div>
                                                 <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>

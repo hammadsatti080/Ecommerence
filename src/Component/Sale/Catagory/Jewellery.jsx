@@ -29,7 +29,7 @@ export default function Jewellery() {
         const fetchJewellery = async () => {
             try {
                 setLoading(true);
-                const res = await fetch("http://localhost:5000/api/Saleprod");
+                const res = await fetch("https://ecommerence-backend-jade.vercel.app/api/Saleprod");
                 if (!res.ok) throw new Error("Failed to fetch products");
                 const data = await res.json();
                 const filtered = data.filter(
@@ -105,7 +105,7 @@ export default function Jewellery() {
 
         try {
             const check = await fetch(
-                "http://localhost:5000/api/auth/check-email",
+                "https://ecommerence-backend-jade.vercel.app/api/auth/check-email",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -121,7 +121,7 @@ export default function Jewellery() {
             }
 
             const order = await fetch(
-                "http://localhost:5000/api/orders",
+                "https://ecommerence-backend-jade.vercel.app/api/orders",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
