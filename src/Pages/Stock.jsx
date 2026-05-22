@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Productitem from "../Component/Prod/Productitem";
 import Headerfile from "../Component/Prod/Headerfile";
-
+import Allcategory from '../Component/Sale/Catagory/Allcategory';
 export default function Stock() {
 
   useEffect(() => {
@@ -14,6 +14,7 @@ export default function Stock() {
   return (
     <div>
       <Headerfile />
+      <Allcategory />
       <Productitem />
     </div>
   );

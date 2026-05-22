@@ -33,6 +33,7 @@ import Microphones from './Component/Sale/Catagory/Microphones';
 import Productpage from './Component/Sale/AdminProductadd/Productpage';
 import MobileCategory from './Component/Sale/Catagory/MobileCategory';
 import Jewellery from './Component/Sale/Catagory/Jewellery';
+import Allcategory from './Component/Sale/Catagory/Allcategory';
 
 
 
@@ -75,6 +76,7 @@ function App() {
           <Route path="/productpage" element={<Productpage />} />
            <Route path="/mob" element={<MobileCategory />} />
               <Route path="/jew" element={<Jewellery />} />
+               <Route path="/allcat" element={<Allcategory />} />
         </Routes>
         <Footer />
       </div>

@@ -6,6 +6,7 @@ import Review from '../Component/Homescreen/Review'
 import FAQ from '../Component/Homescreen/FAQ'
 import Howwecome from '../Component/Homescreen/Howwecome'
 
+
 export default function Home() {
   useEffect(() => {
       window.scrollTo({
