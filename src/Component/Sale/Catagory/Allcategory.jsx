@@ -6,10 +6,10 @@ const Allcategory = () => {
 
     useEffect(() => {
         Promise.all([
-            fetch("http://localhost:5000/api/Saleprod").then((res) =>
+            fetch("https://ecommerence-backend-jade.vercel.app/api/Saleprod").then((res) =>
                 res.json()
             ),
-            fetch("http://localhost:5000/api/products").then((res) =>
+            fetch("https://ecommerence-backend-jade.vercel.app/api/products").then((res) =>
                 res.json()
             ),
         ])
