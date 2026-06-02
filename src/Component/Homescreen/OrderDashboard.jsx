@@ -22,7 +22,7 @@ export default function OrderDashboard() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/orders")
+        fetch("https://ecommerence-backend-jade.vercel.app/api/orders")
             .then((res) => res.json())
             .then((data) => {
                 setOrders(data);

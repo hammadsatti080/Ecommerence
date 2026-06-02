@@ -9,8 +9,8 @@ export default function Item() {
   const [sortOrder, setSortOrder] = useState("");
   const [flippedCard, setFlippedCard] = useState(null);
 
-  const PRODUCT_API = "http://localhost:5000/api/products";
-  const CATEGORY_API = "http://localhost:5000/api/categories";
+  const PRODUCT_API = "https://ecommerence-backend-jade.vercel.app/api/products";
+  const CATEGORY_API = "https://ecommerence-backend-jade.vercel.app/api/categories";
 
   useEffect(() => {
     fetchProducts();
