@@ -5,6 +5,7 @@ import Item from '../Component/Homescreen/Item'
 import Review from '../Component/Homescreen/Review'
 import FAQ from '../Component/Homescreen/FAQ'
 import Howwecome from '../Component/Homescreen/Howwecome'
+import OrderDashboard from '../Component/Homescreen/OrderDashboard'
 
 
 export default function Home() {
@@ -20,8 +21,10 @@ export default function Home() {
       <About />
       <Item />
       <Howwecome />
+      <OrderDashboard />
       <Review />
       <FAQ />
+
     </div>
   )
 }

@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 export default function Item() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [activeCategory, setActiveCategory] = useState("");
+  //const [activeCategory, setActiveCategory] = useState("");
+  const [activeCategory, setActiveCategory] = useState("ALL");
   const [sortOrder, setSortOrder] = useState("");
   const [flippedCard, setFlippedCard] = useState(null);
 
-  const PRODUCT_API = "https://ecommerence-backend-jade.vercel.app/api/products";
-  const CATEGORY_API = "https://ecommerence-backend-jade.vercel.app/api/categories";
+  const PRODUCT_API = "http://localhost:5000/api/products";
+  const CATEGORY_API = "http://localhost:5000/api/categories";
 
   useEffect(() => {
     fetchProducts();
@@ -64,6 +65,7 @@ export default function Item() {
   let filteredProducts = products.filter(
     (p) => p.category === activeCategory
   );
+  
 
   /* SORT */
   if (sortOrder === "lowToHigh") {
