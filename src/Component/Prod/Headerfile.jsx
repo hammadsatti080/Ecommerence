@@ -4,7 +4,7 @@ export default function WhyUs() {
     return (
         <div
             style={{
-                backgroundImage: "url('/Homescreen/Home.jpeg')",
+                backgroundImage: "url('/Homescreen/Home1.jpeg')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -173,7 +173,7 @@ export default function WhyUs() {
                         fontWeight: "600",
                     }}
                 >
-                    Why Choose Us
+                    Why Choose Us ?
                 </h3>
 
                 {/* Main Heading */}
