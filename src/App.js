@@ -34,6 +34,8 @@ import Productpage from './Component/Sale/AdminProductadd/Productpage';
 import MobileCategory from './Component/Sale/Catagory/MobileCategory';
 import Jewellery from './Component/Sale/Catagory/Jewellery';
 import Allcategory from './Component/Sale/Catagory/Allcategory';
+import Blog from './Component/Blogs/Blog';
+import BlogDetail from './Component/Blogs/BlogDetail';
 
 
 
@@ -74,9 +76,11 @@ function App() {
           <Route path="/screen" element={<Screenprotector />} />
           <Route path="/microphones" element={<Microphones />} />
           <Route path="/productpage" element={<Productpage />} />
-           <Route path="/mob" element={<MobileCategory />} />
-              <Route path="/jew" element={<Jewellery />} />
-               <Route path="/allcat" element={<Allcategory />} />
+          <Route path="/mob" element={<MobileCategory />} />
+          <Route path="/jew" element={<Jewellery />} />
+          <Route path="/allcat" element={<Allcategory />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogDetail />} />
         </Routes>
         <Footer />
       </div>

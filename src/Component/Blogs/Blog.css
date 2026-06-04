@@ -1,0 +1,146 @@
+/* GLOBAL */
+.blog-page {
+  background: #ffffff;
+}
+
+/* HERO */
+.blog-hero {
+  padding: 100px 0 80px;
+  background: linear-gradient(
+    180deg,
+    #f8fbff,
+    #ffffff
+  );
+}
+
+.blog-badge {
+  background: #eef4ff;
+  color: #2563eb;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+}
+
+.blog-title {
+  margin-top: 25px;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #111827;
+}
+
+.blog-title span {
+  color: #2563eb;
+}
+
+.blog-subtitle {
+  max-width: 700px;
+  margin: 20px auto 0;
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+/* FEATURED */
+.featured-blog {
+  background: white;
+  border-radius: 25px;
+  overflow: hidden;
+  padding: 25px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.06);
+}
+
+.featured-image {
+  border-radius: 20px;
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.featured-blog h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 20px 0;
+}
+
+.featured-blog p {
+  color: #6b7280;
+  line-height: 1.8;
+}
+
+/* CATEGORY */
+.category {
+  background: #eef4ff;
+  color: #2563eb;
+  padding: 7px 15px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* BUTTONS */
+.read-btn,
+.read-more {
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  transition: .3s;
+}
+
+.read-btn:hover,
+.read-more:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+/* BLOG CARD */
+.blog-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 100%;
+  transition: .4s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,.05);
+}
+
+.blog-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(37,99,235,.12);
+}
+
+.blog-image {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+}
+
+.blog-content {
+  padding: 25px;
+}
+
+.blog-content h5 {
+  margin-top: 15px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.blog-content p {
+  color: #6b7280;
+  margin: 15px 0;
+  line-height: 1.7;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+  .blog-title {
+    font-size: 2.3rem;
+  }
+
+  .featured-image {
+    height: 250px;
+    margin-bottom: 20px;
+  }
+
+}

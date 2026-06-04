@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import RatingModal from "./RatingModal";
 import { FaStar } from "react-icons/fa";
+import { FaStore } from "react-icons/fa";
 import { useState } from "react";
 export default function Navbar() {
   const [showModal, setShowModal] = useState(false);
@@ -15,16 +16,38 @@ export default function Navbar() {
       <div className="container">
 
         {/* Brand */}
-        <Link className="navbar-brand fw-bold d-flex align-items-center gap-2" to="/">
+
+
+        <Link
+          className="navbar-brand fw-bold d-flex align-items-center gap-2"
+          to="/"
+        >
+          <div
+            style={{
+              width: "40px",
+              height: "40px",
+              borderRadius: "12px",
+              background: "#ffff",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#f50505",
+              boxShadow: "0 8px 20px rgba(37,99,235,0.25)",
+            }}
+          >
+            <FaStore size={18} />
+          </div>
+
           <span
             style={{
-              width: 10,
-              height: 10,
-              borderRadius: "50%",
-              background: "linear-gradient(135deg,#e94560,#ff7a7a)"
+              color: "#111",
+              fontSize: "22px",
+              fontWeight: "800",
+              letterSpacing: "0.5px",
             }}
-          />
-          <span style={{ color: "#111", fontSize: 18 }}>Ecommerce</span>
+          >
+            Ecommerce
+          </span>
         </Link>
 
         {/* Toggle */}
@@ -66,6 +89,7 @@ export default function Navbar() {
               { name: "Product", path: "/prod", icon: "bi-box-seam" },
               { name: "Sale", path: "/sale", icon: "bi-box-seam" },
               { name: "Future Collection", path: "/collect", icon: "bi-lightning-charge" },
+              { name: "Blog", path: "/blog", icon: "bi-journal-text" }
             ].map((item) => (
               <li className="nav-item" key={item.name}>
 
@@ -82,18 +106,18 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="d-flex align-items-center gap-4 ms-lg-3 mt-3 mt-lg-0">
-           
-           <button
-                className="btn border"
-                onClick={() => setShowModal(true)}
-                style={{
-                  borderRadius: "10px",
-                  width: "45px",
-                  height: "45px"
-                }}
-              >
-                <FaStar color="#f5b301" size={20} />
-              </button>
+
+            <button
+              className="btn border"
+              onClick={() => setShowModal(true)}
+              style={{
+                borderRadius: "10px",
+                width: "45px",
+                height: "45px"
+              }}
+            >
+              <FaStar color="#f5b301" size={20} />
+            </button>
             <button
               className="btn text-white px-4"
               style={{
@@ -108,11 +132,11 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-       <RatingModal
+      <RatingModal
         show={showModal}
         handleClose={() => setShowModal(false)}
       />
     </nav>
-    
+
   );
 }
