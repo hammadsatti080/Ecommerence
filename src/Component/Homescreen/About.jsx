@@ -78,15 +78,15 @@ export default function About() {
         <div className="moving-track">
 
           <div className="moving-card card border-0 shadow-sm p-4">
-            <h5 className="fw-semibold">High Quality Products</h5>
-            <p className="text-muted mb-0">
+            <h5 className="fw-semibold"><span>High Quality Products</span></h5>
+            <p className=" mb-0" style={{color:"black"}}>
               We carefully select and deliver only the best quality items.
             </p>
           </div>
 
           <div className="moving-card card border-0 shadow-sm p-4">
-            <h5 className="fw-semibold">Fast & Secure Delivery</h5>
-            <p className="text-muted mb-0">
+            <h5 className="fw-semibold"><span>Fast & Secure Delivery</span></h5>
+            <p className=" mb-0" style={{color:"black"}}>
               Quick delivery service ensuring your orders arrive safely and on time.
             </p>
           </div>
