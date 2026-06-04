@@ -13,9 +13,12 @@ import { useNavigate } from "react-router-dom";
 
 export default function Expenserecord() {
 
+
     const [orders, setOrders] = useState([]);
     const navigate = useNavigate();
-
+    const handlebutton = () => {
+        navigate("/dash")
+    }
     useEffect(() => {
         fetchOrders();
     }, []);
@@ -172,7 +175,14 @@ export default function Expenserecord() {
                         </div>
 
                     </div>
+
                 ))}
+                <button
+                    className="read-btn"
+                    onClick={() => handlebutton()}
+                >
+                  📊 View Graph 
+                </button>
 
             </div>
 

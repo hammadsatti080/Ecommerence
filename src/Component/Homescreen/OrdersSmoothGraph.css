@@ -1,21 +1,25 @@
+/* =========================
+   MAIN WRAPPER
+========================= */
 .chart-wrapper {
     display: flex;
     width: 100%;
     height: 320px;
-    gap: 50px;
+    gap: 20px;
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s ease;
-    
 }
 
-/* fade + slide in */
+/* animation trigger */
 .chart-wrapper.show {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* LEFT SIDE */
+/* =========================
+   LEFT CARD
+========================= */
 .left-card {
     width: 30%;
     background: linear-gradient(135deg, #f8f9fa, #ffffff);
@@ -23,38 +27,43 @@
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     transition: 0.3s ease;
-  margin-left: 40px;
 }
 
+.left-card h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.left-card p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.left-card ul {
+    margin-top: 10px;
+    padding-left: 18px;
+    font-size: 14px;
+}
+
+/* hover effect */
 .left-card:hover {
     transform: scale(1.03);
     box-shadow: 0 12px 25px rgba(0,0,0,0.12);
 }
 
-.left-card h2 {
-    margin-bottom: 10px;
-}
-
-.stats {
-    margin-top: 20px;
-    padding: 10px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
-}
-
-/* RIGHT SIDE */
+/* =========================
+   RIGHT CHART
+========================= */
 .right-chart {
-    width: 60%;
+    width: 70%;
     background: #fff;
     border-radius: 12px;
     padding: 10px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-
-    /* chart animation */
     animation: chartPop 1s ease;
 }
 
+/* chart animation */
 @keyframes chartPop {
     from {
         transform: scale(0.95);
@@ -66,8 +75,53 @@
     }
 }
 
-/* loading text */
+/* loading */
 .loading {
-    font-size: 18px;
+    font-size: 16px;
     padding: 20px;
+}
+
+/* =========================
+   📱 MOBILE RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+    .chart-wrapper {
+        flex-direction: column;
+        height: auto;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .left-card {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .right-chart {
+        width: 100%;
+        height: 300px;
+        padding: 10px;
+    }
+
+    .left-card h2 {
+        font-size: 16px;
+    }
+
+    .left-card p,
+    .left-card ul {
+        font-size: 13px;
+    }
+}
+
+/* extra small devices */
+@media (max-width: 480px) {
+
+    .right-chart {
+        height: 250px;
+    }
+
+    .left-card {
+        padding: 12px;
+    }
 }

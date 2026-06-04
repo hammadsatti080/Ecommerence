@@ -1,0 +1,43 @@
+/* MAIN DASHBOARD */
+.dashboard {
+    padding: 20px;
+}
+
+/* GRID FOR DESKTOP */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* CARD STYLE */
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* MAKE CHART RESPONSIVE */
+canvas {
+    width: 100% !important;
+}
+
+/* =========================
+   📱 MOBILE RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+    .grid {
+        grid-template-columns: 1fr; /* stack cards */
+    }
+
+    .dashboard {
+        padding: 10px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+}

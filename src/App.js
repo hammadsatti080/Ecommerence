@@ -36,6 +36,7 @@ import Jewellery from './Component/Sale/Catagory/Jewellery';
 import Allcategory from './Component/Sale/Catagory/Allcategory';
 import Blog from './Component/Blogs/Blog';
 import BlogDetail from './Component/Blogs/BlogDetail';
+import Dash from './Pages/Dash';
 
 
 
@@ -81,6 +82,7 @@ function App() {
           <Route path="/allcat" element={<Allcategory />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
+          <Route path="/dash" element={<Dash />} />
         </Routes>
         <Footer />
       </div>
