@@ -36,3 +36,67 @@
     transform: translateX(-100%);
   }
 }
+
+
+
+/* LEFT ABOUT CARD */
+.about-left-card {
+  background: linear-gradient(135deg, #f8fafc, #eef4ff);
+  padding: 35px;
+  border-radius: 20px;
+  border: 1px solid #e5e7eb;
+
+  animation: slideLeft 1s ease;
+
+  transition: all 0.4s ease;
+}
+
+.about-left-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.12);
+}
+
+/* RIGHT CARD */
+.about-right-card {
+  background: linear-gradient(135deg, #eff6ff, #e0e7ff);
+  padding: 35px;
+  border-radius: 20px;
+  border: 1px solid #dbeafe;
+
+  height: 100%;
+
+  animation: slideRight 1s ease;
+
+  transition: all 0.4s ease;
+}
+
+.about-right-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(124, 58, 237, 0.12);
+}
+
+/* ANIMATIONS */
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

@@ -47,19 +47,21 @@ export default function About() {
 
         {/* LEFT */}
         <div className="col-md-6 d-flex align-items-center">
-          <div>
-            <p className="text-muted lh-lg">
-              Our company has been operating in the market for the past 4 to 5 years.
-              We specialize in providing a wide range of high-quality products at
-              affordable prices. Our focus is on customer satisfaction, trust, and
-              long-term service relationships.
-            </p>
+          <div className="about-left-card">
+            <div>
+              <p className="text-muted lh-lg">
+                Our company has been operating in the market for the past 4 to 5 years.
+                We specialize in providing a wide range of high-quality products at
+                affordable prices. Our focus is on customer satisfaction, trust, and
+                long-term service relationships.
+              </p>
+            </div>
           </div>
         </div>
 
         {/* RIGHT */}
         <div className="col-md-6">
-          <div className="card border-0 shadow-sm p-4 text-center h-100 d-flex justify-content-center">
+          <div className="about-right-card">
             <h5 className="fw-semibold mb-3">Why Choose Us?</h5>
             <p className="text-muted mb-0">
               Reliable service, premium quality Items, and fast delivery experience
@@ -88,11 +90,8 @@ export default function About() {
               Quick delivery service ensuring your orders arrive safely and on time.
             </p>
           </div>
-
         </div>
-
       </div>
-
     </div>
   );
 }
